@@ -25,6 +25,7 @@ M.chroma = {
     tealOnSurface = '#94e2d5',
     green0 = '#a3be8c',
     green1 = '#b1d196',
+    teal = '#8bd5ca',
     orange0 = '#d89079',
     orange1 = '#ffaa79',
     orange2 = '#ffc2b2',
