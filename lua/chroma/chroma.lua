@@ -213,11 +213,11 @@ local theme = lush(function(injected_functions)
     Keyword        { fg = purpleOnSurface }, --   any other keyword
     Exception      { Keyword }, --   try, catch, throw
 
-    PreProc        { fg = cyanOnSurface }, -- (*) Generic Preprocessor
-    Include        { PreProc }, --   Preprocessor #include
+    PreProc        { fg = orange2 }, -- (*) Generic Preprocessor
+    Include        { fg = cyanOnSurface }, --   Preprocessor #include
     Define         { PreProc }, --   Preprocessor #define
-    Macro          { PreProc }, --   Same as Define
-    PreCondit      { PreProc }, --   Preprocessor #if, #else, #endif, etc.
+    Macro          { fg = cyanOnSurface }, --   Same as Define
+    PreCondit      { fg = cyanOnSurface }, --   Preprocessor #if, #else, #endif, etc.
 
     Type           { fg = yellow0 }, -- (*) int, long, char, etc.
     StorageClass   { Type }, --   static, register, volatile, etc.
@@ -236,6 +236,26 @@ local theme = lush(function(injected_functions)
     Italic         { gui = "italic" },
     -- ("Ignore", below, may be invisible...)
     -- Ignore         { }, -- Left blank, hidden |hl-Ignore|.
+
+    -- diff
+    diffAdded     { fg = onGreenSurface, bg = greenSurface.mix(surface0, 50) },
+    diffChanged   { fg = onYellowSurface, bg = yellowSurface.mix(surface0, 50) },
+    diffRemoved   { fg = onRedSurface, bg = redSurface.mix(surface0, 50) },
+    diffOldFile   { fg = onSurface1 },
+    diffNewFile   { fg = skyBlueOnSurface },
+    diffFile      { fg = purpleOnSurface },
+    diffLine      { fg = onSurface1 },
+    diffIndexLine { fg = purpleOnSurface },
+
+    -- GitSigns
+    GitSignsAdd    { fg = green0 }, -- diff mode: Added line |diff.txt|
+    GitSignsChange { fg = yellow0 }, -- diff mode: Changed line |diff.txt|
+    GitSignsDelete { fg = red0 }, -- diff mode: Deleted line |diff.txt|
+
+    -- GitGutter
+    GitGutterAdd    { GitSignsAdd }, -- diff mode: Added line |diff.txt|
+    GitGutterChange { GitSignsChange }, -- diff mode: Changed line |diff.txt|
+    GitGutterDelete { GitSignsDelete }, -- diff mode: Deleted line |diff.txt|
 
     -- These groups are for the native LSP client and diagnostic system. Some
     -- other LSP clients may use these groups, or use their own. Consult your
@@ -299,13 +319,29 @@ local theme = lush(function(injected_functions)
     --
     -- See :h treesitter-highlight-groups.
 
-    sym"@text.literal"          { Comment }, -- Comment
+    sym"@text"                  { }, -- Comment
+    sym"@text.strong"           { Bold },
+    sym"@text.emphasis"         { Italic },
+    sym"@text.underline"        { gui = "underline" },
+    sym"@text.strike"           { gui = "strikethrough" },
+    sym"@text.literal"          { }, -- literal or verbatim text (e.g., inline code)
+    sym"@text.quote"            { fg = onSurface1, gui = "italic" }, -- Comment
     sym"@text.reference"        { Identifier }, -- Identifier
     sym"@text.title"            { Title }, -- Title
-    sym"@text.uri"              { Underlined }, -- Underlined
-    sym"@text.underline"        { Underlined }, -- Underlined
+    sym"@text.uri"              { URI },
+    sym"@text.math"             { sym"@text.literal" },
+    sym"@text.environment"      { }, -- text environments of markup languages
+    sym"@text.environment.name" { }, -- text indicating the type of an environment
+    sym"@text.reference"        { }, -- text references, footnotes, citations, etc.
     sym"@text.todo"             { Todo }, -- Todo
+    sym"@text.note"             { gui = "underline" },
+    sym"@text.warning"          { Warning },
+    sym"@text.danger"           { Error },
+    sym"@text.diff.add"         { GitSignsAdd },
+    sym"@text.diff.delete"      { GitSignsDelete },
     sym"@comment"               { Comment }, -- Comment
+    sym"@error"                 { Error },
+    sym"@none"                  { },
     sym"@punctuation"           { Delimiter }, -- Delimiter
     sym"@constant"              { Constant }, -- Constant
     sym"@constant.builtin"      { Special }, -- Special
@@ -323,39 +359,48 @@ local theme = lush(function(injected_functions)
     sym"@float"                 { Float }, -- Float
     sym"@function"              { Function }, -- Function
     sym"@function.builtin"      { fg = skyBlueOnSurface }, -- Special
+    sym"@function.call"         { Function }, -- Macro
     sym"@function.macro"        { Macro }, -- Macro
-    sym"@parameter"             { Identifier }, -- Identifier
+    sym"@parameter"             { fg = onSurface1, gui = "italic" }, -- Identifier
     sym"@method"                { Function }, -- Function
+    sym"@method.call"           { Function }, -- Function
     sym"@field"                 { Identifier }, -- Identifier
     sym"@property"              { Identifier }, -- Identifier
-    sym"@constructor"           { Special }, -- Special
-    sym"@constructor.lua"       { fg = onSurface1 }, -- Special
+    sym"@constructor"           { }, -- Special
     sym"@conditional"           { Conditional }, -- Conditional
+    sym"@conditional.ternary"   { Operator }, -- Conditional
     sym"@repeat"                { Repeat }, -- Repeat
-    sym"@label"                 { Label }, -- Label
+    sym"@label"                 { }, -- Label
     sym"@operator"              { Operator }, -- Operator
-    sym"@keyword"               { Keyword }, -- Keyword
-    sym"@exception"             { Exception }, -- Exception
-    sym"@variable"              { Identifier }, -- Identifier
-    sym"@type"                  { Type }, -- Type
-    sym"@type.definition"       { Typedef }, -- Typedef
-    sym"@storageclass"          { StorageClass }, -- StorageClass
-    sym"@structure"             { Structure }, -- Structure
-    sym"@namespace"             { Identifier }, -- Identifier
-    sym"@include"               { Include }, -- Include
-    sym"@preproc"               { PreProc }, -- PreProc
-    sym"@debug"                 { Debug }, -- Debug
-    sym"@tag"                   { Tag }, -- Tag
-    sym"@punctuation.delimiter" { fg = onSurface1 }, -- delimiters (e.g. `;` / `.` / `,`)
-    sym"@punctuation.bracket"   { sym'@punctuation.delimiter' }, -- brackets (e.g. `()` / `{}` / `[]`)
-    sym"@punctuation.special"   { SpecialChar }, -- special symbols (e.g. `{}` in string interpolation)
-    sym'@inlay.hint'            { LspCodeLens }, -- identifier reference
-
-    -- Keywords
     sym"@keyword"               { Keyword }, -- various keywords
     sym"@keyword.function"      { sym"@keyword" }, -- keywords that define a function (e.g. `func` in Go, `def` in Python)
     sym"@keyword.operator"      { sym"@keyword" }, -- operators that are English words (e.g. `and` / `or`)
     sym"@keyword.return"        { fg = red0 }, -- keywords like `return` and `yield`
+    sym"@exception"             { Exception }, -- Exception
+    sym"@variable"              { }, -- Identifier
+    sym"@variable.builtin"      { fg = lavenderOnSurface }, -- Identifier
+    sym"@type"                  { Type }, -- Type
+    sym"@type.builtin"          { fg = orange1 },
+    sym"@type.definition"       { Typedef }, -- Typedef
+    sym"@type.qualifier"        { fg = red0 },
+    sym"@storageclass"          { StorageClass }, -- StorageClass
+    sym"@structure"             { Structure }, -- Structure
+    sym"@namespace"             { fg = red1 }, -- Identifier
+    sym"@symbol"                { }, -- symbols or atoms
+    sym"@include"               { Keyword }, -- Include
+    sym"@attribute"             { PreProc },
+    sym"@preproc"               { PreProc }, -- PreProc
+    sym"@debug"                 { Debug }, -- Debug
+    sym"@tag"                   { Tag }, -- XML tag names
+    sym"@tag.attribute"         { Identifier }, -- XML tag attributes
+    sym"@tag.delimiter"         { Punctuation }, -- XML tag delimiters
+    sym"@punctuation.delimiter" { fg = onSurface1 }, -- delimiters (e.g. `;` / `.` / `,`)
+    sym"@punctuation.bracket"   { sym'@punctuation.delimiter' }, -- brackets (e.g. `()` / `{}` / `[]`)
+    sym"@punctuation.special"   { SpecialChar }, -- special symbols (e.g. `{}` in string interpolation)
+    sym'@conceal'               { Conceal },
+    sym'@scope'                 { }, -- scope block
+    sym'@reference'             { }, -- scope block
+    sym'@inlay.hint'            { LspCodeLens }, -- identifier reference
 
     -- Locals
     sym'@definition'            { }, -- various definitions
@@ -405,33 +450,12 @@ local theme = lush(function(injected_functions)
     debugPC         { CursorLine }, -- used for highlighting the current line in terminal-debug
     debugBreakpoint { fg = blueOnSurface, bg = blueSurface.mix(surface0, 90) }, -- used for breakpoint colors in terminal-debug
 
-    -- diff
-    diffAdded     { fg = onGreenSurface, bg = greenSurface.mix(surface0, 50) },
-    diffChanged   { fg = onYellowSurface, bg = yellowSurface.mix(surface0, 50) },
-    diffRemoved   { fg = onRedSurface, bg = redSurface.mix(surface0, 50) },
-    diffOldFile   { fg = onSurface1 },
-    diffNewFile   { fg = skyBlueOnSurface },
-    diffFile      { fg = purpleOnSurface },
-    diffLine      { fg = onSurface1 },
-    diffIndexLine { fg = purpleOnSurface },
-
-    -- GitSigns
-    GitSignsAdd    { fg = green0 }, -- diff mode: Added line |diff.txt|
-    GitSignsChange { fg = yellow0 }, -- diff mode: Changed line |diff.txt|
-    GitSignsDelete { fg = red0 }, -- diff mode: Deleted line |diff.txt|
-
-    -- GitGutter
-    GitGutterAdd    { GitSignsAdd }, -- diff mode: Added line |diff.txt|
-    GitGutterChange { GitSignsChange }, -- diff mode: Changed line |diff.txt|
-    GitGutterDelete { GitSignsDelete }, -- diff mode: Deleted line |diff.txt|
-
     -- Telescope
     -- Bordered styles.
-    --Group.new('TelescopeNormal', c.onSurface0, c.surface0)
-    --Group.new('TelescopeBorder', c.border, c.surface0)
-    --Group.new('TelescopeTitle', c.onSurface1, c.surface0)
-    --Group.new('TelescopePromptCounter', c.syntaxComment, c.surface0)
-    --Group.new('TelescopePreviewNormal', c.onSurface0, c.surface0)
+    --TelescopeNormal        { fg = onSurface0, bg = surface0 },
+    --TelescopeBorder        { fg = onSurface4, bg = surface0 },
+    --TelescopeTitle         { fg = onSurface1, bg = surface0 },
+    --TelescopePreviewNormal { fg = onSurface0, bg = surface0 },
     TelescopeSelection      { fg = onSurface00, bg = surface0 },
     TelescopePromptPrefix   { fg = red0 },
     TelescopeSelectionCaret { fg = red0 },
@@ -456,32 +480,32 @@ local theme = lush(function(injected_functions)
     CmpItemAbbrMatchFuzzy { FuzzyMatch },
 
     -- kind support
-    CmpItemKindSnippet      { fg = purpleOnSurface },
-    CmpItemKindKeyword      { sym"@keyword" },
-    CmpItemKindText         { fg = tealOnSurface },
-    CmpItemKindMethod       { sym'@definition.method' },
-    CmpItemKindConstructor  { sym'@constructor' },
-    CmpItemKindFunction     { sym'@definition.function' },
-    CmpItemKindFolder       { Directory },
-    CmpItemKindModule       { sym'@definition.namespace' },
-    CmpItemKindConstant     { sym'@definition.constant' },
-    CmpItemKindField        { sym'@definition.field' },
-    CmpItemKindProperty     { sym'@property' },
-    CmpItemKindEnum         { sym'@definition.enum' },
-    CmpItemKindUnit         { sym'@definition.namespace' },
-    CmpItemKindClass        { sym'@definition.type' },
-    CmpItemKindVariable     { sym'@definition.var' },
-    CmpItemKindFile         { File },
-    -- Group.new('CmpItemKindInterface', c.yellow0)
-    -- Group.new('CmpItemKindColor', c.red0)
-    -- Group.new('CmpItemKindReference', c.red0)
-    -- Group.link('CmpItemKindEnumMember', g['@field'])
-    -- Group.link('CmpItemKindStruct', g['@definition.type'])
-    -- Group.link('CmpItemKindValue', g['@field'])
-    -- Group.new('CmpItemKindEvent', c.skyBlueOnSurface)
-    -- Group.link('CmpItemKindOperator', g.Operator)
-    -- Group.link('CmpItemKindTypeParameter', g['@parameter'])
-    -- Group.new('CmpItemKindCopilot', c.orange2)
+    CmpItemKindSnippet       { fg = purpleOnSurface },
+    CmpItemKindKeyword       { sym"@keyword" },
+    CmpItemKindText          { fg = tealOnSurface },
+    CmpItemKindMethod        { sym'@definition.method' },
+    CmpItemKindConstructor   { sym'@constructor' },
+    CmpItemKindFunction      { sym'@definition.function' },
+    CmpItemKindFolder        { Directory },
+    CmpItemKindModule        { sym'@definition.namespace' },
+    CmpItemKindConstant      { sym'@definition.constant' },
+    CmpItemKindField         { sym'@definition.field' },
+    CmpItemKindProperty      { sym'@property' },
+    CmpItemKindEnum          { sym'@definition.enum' },
+    CmpItemKindUnit          { sym'@definition.namespace' },
+    CmpItemKindClass         { sym'@definition.type' },
+    CmpItemKindVariable      { sym'@definition.var' },
+    CmpItemKindFile          { File },
+    CmpItemKindInterface     { fg = yellow0 },
+    CmpItemKindColor         { fg = red0 },
+    CmpItemKindReference     { fg = red0 },
+    CmpItemKindEnumMember    { sym'@field' },
+    CmpItemKindStruct        { sym'@definition.type' },
+    CmpItemKindValue         { sym'@field' },
+    CmpItemKindEvent         { fg = skyBlueOnSurface },
+    CmpItemKindOperator      { Operator },
+    CmpItemKindTypeParameter { sym'@parameter' },
+    CmpItemKindCopilot       { fg = orange2 },
 
     -- folke/noice.nvim
     NoiceCmdline { fg = onSurface0, bg = surface0 },
