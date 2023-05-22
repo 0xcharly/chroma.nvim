@@ -44,6 +44,40 @@
 
 local lush = require('lush')
 local hsl = lush.hsl
+local palette = require 'lua.chroma.palette' -- TODO(delay): fix import.
+
+local surface00 = hsl(palette.chroma.surface00)
+local surface0 = hsl(palette.chroma.surface0)
+local surface1 = hsl(palette.chroma.surface1)
+local surface2 = hsl(palette.chroma.surface2)
+
+local onSurface00 = hsl(palette.chroma.onSurface00)
+local onSurface0 = hsl(palette.chroma.onSurface0)
+local onSurface1 = hsl(palette.chroma.onSurface1)
+local onSurface2 = hsl(palette.chroma.onSurface2)
+local onSurface3 = hsl(palette.chroma.onSurface3)
+local onSurface4 = hsl(palette.chroma.onSurface4)
+
+local highlight = hsl(palette.chroma.highlight)
+local onHighlight = hsl(palette.chroma.onHighlight)
+local blueOnSurface = hsl(palette.chroma.blueOnSurface)
+local altSkyBlueOnSurface = hsl(palette.chroma.altSkyBlueOnSurface)
+local skyBlueOnSurface = hsl(palette.chroma.skyBlueOnSurface)
+local cyanOnSurface = hsl(palette.chroma.cyanOnSurface)
+local tealOnSurface = hsl(palette.chroma.tealOnSurface)
+local green0 = hsl(palette.chroma.green0)
+local green1 = hsl(palette.chroma.green1)
+local orange0 = hsl(palette.chroma.orange0)
+local orange1 = hsl(palette.chroma.orange1)
+local orange2 = hsl(palette.chroma.orange2)
+local yellow0 = hsl(palette.chroma.yellow0)
+local yellow1 = hsl(palette.chroma.yellow1)
+local red0 = hsl(palette.chroma.red0)
+local red1 = hsl(palette.chroma.red1)
+local red2 = hsl(palette.chroma.red2)
+local purpleOnSurface = hsl(palette.chroma.purpleOnSurface)
+local lavenderOnSurface = hsl(palette.chroma.lavenderOnSurface)
+local altLavenderOnSurface = hsl(palette.chroma.altLavenderOnSurface)
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
@@ -62,8 +96,10 @@ local theme = lush(function(injected_functions)
     -- See :h highlight-groups
     --
     -- ColorColumn  { }, -- Columns set with 'colorcolumn'
-    -- Conceal      { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-    -- Cursor       { }, -- Character under the cursor
+    Conceal      { fg = onSurface1 }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
+    Cursor       { fg = onSurface3 }, -- Character under the cursor
+    Border       { fg = onSurface4 },
+    FloatBoarder       { Border },
     -- lCursor      { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM     { }, -- Like Cursor, but used when in IME mode |CursorIM|
     -- CursorColumn { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
@@ -83,17 +119,18 @@ local theme = lush(function(injected_functions)
     -- SignColumn   { }, -- Column where |signs| are displayed
     -- IncSearch    { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     -- Substitute   { }, -- |:substitute| replacement text highlighting
-    -- LineNr       { }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    -- CursorLineNr { }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    LineNr       { fg = onSurface4 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    CursorLineNr { fg = onSurface2 }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
     -- MatchParen   { }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     -- ModeMsg      { }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea      { }, -- Area for messages and cmdline
     -- MsgSeparator { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     -- MoreMsg      { }, -- |more-prompt|
     -- NonText      { }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    -- Normal       { }, -- Normal text
-    -- NormalFloat  { }, -- Normal text in floating windows.
-    -- NormalNC     { }, -- normal text in non-current windows
+    Normal       { fg = onSurface0, bg = surface0 }, -- Normal text
+    NormalFloat  { Normal }, -- Normal text in floating windows.
+    NormalNC     { Normal }, -- normal text in non-current windows
+    NormalSB     { Normal }, -- normal text in non-current windows
     -- Pmenu        { }, -- Popup menu: Normal item.
     -- PmenuSel     { }, -- Popup menu: Selected item.
     -- PmenuSbar    { }, -- Popup menu: Scrollbar.
