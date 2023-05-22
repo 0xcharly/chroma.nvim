@@ -44,7 +44,7 @@
 
 local lush = require('lush')
 local hsl = lush.hsl
-local palette = require 'lua.chroma.palette' -- TODO(delay): fix import.
+local palette = require 'lua.lush_theme.palette' -- TODO(delay): fix import.
 
 local surface00 = hsl(palette.chroma.surface00)
 local surface0 = hsl(palette.chroma.surface0)
