@@ -39,6 +39,16 @@ M.chroma = {
     altLavenderOnSurface = '#a1abe3',
 }
 
+M.pantone = {
+  emerald = "#019473",
+  serenity = "#91a8d1",
+  greenery = "#88b04b",
+  turquoise = "#44b5aa",
+  sandDollar = "#decdbe",
+  livingCoral = "#fe7061",
+  trueRed = "#bf1932",
+}
+
 M.surfaces = {
     blueSurface = '#94b2f6',
     onBlueSurface = '#171c23',
