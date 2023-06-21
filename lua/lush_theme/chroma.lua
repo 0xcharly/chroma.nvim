@@ -469,7 +469,7 @@ local theme = lush(function(injected_functions)
     sym '@function.builtin' { fg = T.blueEmphasis },              -- Special
     sym '@function.call' { Function },                            -- Macro
     sym '@function.macro' { Macro },                              -- Macro
-    sym '@parameter' { fg = T.text1, gui = 'italic' },            -- Identifier
+    sym '@parameter' { fg = T.text0 },                            -- Identifier
     sym '@method' { Function },                                   -- Function
     sym '@method.call' { Function },                              -- Function
     sym '@field' { Identifier },                                  -- Identifier
@@ -488,7 +488,7 @@ local theme = lush(function(injected_functions)
     sym '@variable' {},                                           -- Identifier
     sym '@variable.builtin' { fg = T.purple },                    -- Identifier
     sym '@type' { Type },                                         -- Type
-    sym '@type.builtin' { Type, gui = 'bold' },
+    sym '@type.builtin' { Type },
     sym '@type.definition' { Typedef },                           -- Typedef
     sym '@type.qualifier' { fg = T.red },
     sym '@storageclass' { StorageClass },                         -- StorageClass
@@ -513,7 +513,7 @@ local theme = lush(function(injected_functions)
     -- Locals
     sym '@definition' {},                                          -- various definitions
     sym '@definition.constant' { sym '@constant' },                -- constants
-    sym '@definition.function' { sym '@function', gui = 'bold' },  -- functions
+    sym '@definition.function' { sym '@function' },  -- functions
     sym '@definition.method' { sym '@method' },                    -- methods
     sym '@definition.var' { fg = t.cyan0 },                        -- variables
     sym '@definition.parameter' { sym '@parameter' },              -- parameters
@@ -526,7 +526,7 @@ local theme = lush(function(injected_functions)
     sym '@definition.associated' { sym '@definition' },            -- the associated type of a variable
 
     -- LSP
-    sym '@lsp.mod.declaration.c' { gui = 'bold' },
+    sym '@lsp.mod.declaration.c' {},
     sym '@lsp.mod.definition.c' {},
     sym '@lsp.mod.globalScope.c' {},
 
