@@ -83,6 +83,8 @@ local Pantone = {
     c2727 = hsl '#2f7ee2',
     c3556 = hsl '#ee3831',
     c7442 = hsl '#963cbd',
+
+    c6176 = hsl '#9ac0a5',
   },
 
   ColorBridgeCoated = {
@@ -157,7 +159,7 @@ local T = {
   border = Pantone.ExtendedGamutCoated.c432,
   conceal = Pantone.ExtendedGamutCoated.c7545,
 
-  greenSubtle = Pantone.ColorBridgeCoated.c2267,
+  greenSubtle = Pantone.FormulaGuideCoated.c6176,
   green = Pantone.ColorBridgeUncoated.c6169,
   greenEmphasis = Pantone.ExtendedGamutCoated.c2255,
 
