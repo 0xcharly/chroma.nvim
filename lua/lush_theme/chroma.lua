@@ -86,8 +86,11 @@ local Pantone = {
   },
 
   ColorBridgeCoated = {
-    c6001 = hsl '#e6ddaf',
+    c433 = hsl '#222f34',
+    c532 = hsl '#252934',
     c2267 = hsl '#a2cd88',
+    c4280 = hsl '#2c333a',
+    c6001 = hsl '#e6ddaf',
   },
 
   ColorBridgeUncoated = {
@@ -137,11 +140,11 @@ local Pantone = {
 
 local T = {
   shadow = Pantone.ExtendedGamutCoated.Black6,
-  surface0 = Pantone.ExtendedGamutCoated.c433.darken(18),
-  surface1 = Pantone.ExtendedGamutCoated.c433,
-  surface2 = Pantone.ExtendedGamutCoated.c433.lighten(1),
+  surface0 = Pantone.ExtendedGamutCoated.c433.darken(15),
+  surface1 = Pantone.ColorBridgeCoated.c532,
+  surface2 = Pantone.ColorBridgeCoated.c4280,
 
-  scrollbar = Pantone.ExtendedGamutCoated.c432,
+  scrollbar = Pantone.ColorBridgeCoated.c532,
   scrollbarThumb = Pantone.ExtendedGamutCoated.c7544,
 
   title = Pantone.ExtendedGamutCoated.c663,
@@ -225,65 +228,65 @@ local theme = lush(function(injected_functions)
     -- See :h highlight-groups
     --
     Conceal { fg = T.conceal }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-    Cursor { fg = T.text1 },   -- Character under the cursor
+    Cursor { fg = T.text1 },    -- Character under the cursor
     Border { fg = T.border },
     FloatBorder { Border },
     FloatShadow { bg = T.shadow },
     FloatShadowThrough { bg = T.shadow },
-    NonText { fg = T.conceal },                       -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal { fg = T.text0, bg = T.surface0 },         -- Normal text
-    NormalFloat { Normal },                           -- Normal text in floating windows.
-    NormalNC { Normal },                              -- normal text in non-current windows
-    NormalSB { Normal },                              -- normal text in non-current windows
-    lCursor { Cursor },                               -- Character under the cursor when |language-mapping| is used (see 'guicursor')
-    CursorIM { Cursor },                              -- Like Cursor, but used when in IME mode |CursorIM|
-    CursorLine { bg = Mix.cursorline },               -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    CursorColumn { CursorLine },                      -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    ColorColumn { CursorLine },                       -- Columns set with 'colorcolumn'
-    File { fg = T.text0 },                            -- Directory names (and other special names in listings)
-    Directory { fg = T.blue },                        -- Directory names (and other special names in listings)
-    DiffAdd { fg = Mix.onGreen, bg = Mix.green },     -- Diff mode: Added line |diff.txt|
+    NonText { fg = T.conceal },                        -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    Normal { fg = T.text0, bg = T.surface0 },          -- Normal text
+    NormalFloat { Normal },                            -- Normal text in floating windows.
+    NormalNC { Normal },                               -- normal text in non-current windows
+    NormalSB { Normal },                               -- normal text in non-current windows
+    lCursor { Cursor },                                -- Character under the cursor when |language-mapping| is used (see 'guicursor')
+    CursorIM { Cursor },                               -- Like Cursor, but used when in IME mode |CursorIM|
+    CursorLine { bg = Mix.cursorline },                -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorColumn { CursorLine },                       -- Screen-column at the cursor, when 'cursorcolumn' is set.
+    ColorColumn { CursorLine },                        -- Columns set with 'colorcolumn'
+    File { fg = T.text0 },                             -- Directory names (and other special names in listings)
+    Directory { fg = T.blue },                         -- Directory names (and other special names in listings)
+    DiffAdd { fg = Mix.onGreen, bg = Mix.green },      -- Diff mode: Added line |diff.txt|
     DiffChange { fg = Mix.onPurple, bg = Mix.purple }, -- Diff mode: Changed line |diff.txt|
-    DiffDelete { fg = Mix.onRed, bg = Mix.red },      -- Diff mode: Deleted line |diff.txt|
-    DiffText { fg = T.text1 },                        -- Diff mode: Changed text within a changed line |diff.txt|
-    EndOfBuffer { NonText },                          -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+    DiffDelete { fg = Mix.onRed, bg = Mix.red },       -- Diff mode: Deleted line |diff.txt|
+    DiffText { fg = T.text1 },                         -- Diff mode: Changed text within a changed line |diff.txt|
+    EndOfBuffer { NonText },                           -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
-    VertSplit { Border },                                           -- Column separating vertically split windows
-    Folded { fg = T.subtext1, gui = 'italic' },                     -- Line used for closed folds
-    FoldColumn { bg = T.surface0 },                                 -- 'foldcolumn'
-    SignColumn { bg = T.surface0 },                                 -- Column where |signs| are displayed
-    SignColumnSB { SignColumn },                                    -- Column where |signs| are displayed
-    Search { fg = Mix.onYellow, bg = Mix.yellow, gui = 'bold' },    -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-    IncSearch { Search },                                           -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    VertSplit { Border },                                            -- Column separating vertically split windows
+    Folded { fg = T.subtext1, gui = 'italic' },                      -- Line used for closed folds
+    FoldColumn { bg = T.surface0 },                                  -- 'foldcolumn'
+    SignColumn { bg = T.surface0 },                                  -- Column where |signs| are displayed
+    SignColumnSB { SignColumn },                                     -- Column where |signs| are displayed
+    Search { fg = Mix.onYellow, bg = Mix.yellow, gui = 'bold' },     -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+    IncSearch { Search },                                            -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
     Substitute { fg = Mix.onPurple, bg = Mix.purple, gui = 'bold' }, -- |:substitute| replacement text highlighting
-    LineNr { fg = T.conceal },                                      -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    CursorLineNr { fg = T.subtext0 },                               -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    MatchParen { fg = T.title },                                    -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    ModeMsg { fg = T.text0, gui = 'bold' },                         -- 'showmode' message (e.g., "-- INSERT -- ")
-    MsgArea { fg = T.text0 },                                       -- Area for messages and cmdline
+    LineNr { fg = T.conceal },                                       -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    CursorLineNr { fg = T.subtext0 },                                -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    MatchParen { fg = T.title },                                     -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    ModeMsg { fg = T.text0, gui = 'bold' },                          -- 'showmode' message (e.g., "-- INSERT -- ")
+    MsgArea { fg = T.text0 },                                        -- Area for messages and cmdline
     -- MsgSeparat or { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
-    MoreMsg { fg = Mix.onCyan, bg = Mix.cyan },                     -- |more-prompt|
-    Pmenu { Normal },                                               -- Popup menu: Normal item.
-    PmenuSel { fg = Mix.onBlue, bg = Mix.blue },                    -- Popup menu: Selected item.
-    PmenuSbar { bg = T.scrollbar },                                 -- Popup menu: Scrollbar.
-    PmenuThumb { fg = T.scrollbarThumb },                           -- Popup menu: Thumb of the scrollbar.
-    Question { fg = T.greenEmphasis },                              -- |hit-enter| prompt and yes/no questions
-    QuickFixLine { bg = T.surface1, gui = 'bold' },                 -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    SpecialKey { fg = T.text1 },                                    -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-    StatusLine { fg = T.text0, bg = T.surface1 },                   -- Status line of current window
-    StatusLineNC { StatusLine, fg = T.text1 },                      -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    TabLine { Normal, fg = T.subtext0 },                            -- Tab pages line, not active tab page label
-    TabLineFill { Normal },                                         -- Tab pages line, where there are no labels
-    TabLineSel { PmenuSel },                                        -- Tab pages line, active tab page label
-    Title { fg = T.title, gui = 'bold' },                           -- Titles for output from ":set all", ":autocmd" etc.
-    Visual { bg = Mix.visual },                                     -- Visual mode selection
-    VisualNOS { Visual },                                           -- Visual mode selection when vim is "Not Owning the Selection".
-    Whitespace { NonText },                                         -- "nbsp", "space", "tab" and "trail" in 'listchars'
-    Winseparator { VertSplit },                                     -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
-    WildMenu { bg = T.surface1 },                                   -- Current match in 'wildmenu' completion
+    MoreMsg { fg = Mix.onCyan, bg = Mix.cyan },                      -- |more-prompt|
+    Pmenu { Normal },                                                -- Popup menu: Normal item.
+    PmenuSel { fg = Mix.onBlue, bg = Mix.blue },                     -- Popup menu: Selected item.
+    PmenuSbar { bg = T.scrollbar },                                  -- Popup menu: Scrollbar.
+    PmenuThumb { fg = T.scrollbarThumb },                            -- Popup menu: Thumb of the scrollbar.
+    Question { fg = T.greenEmphasis },                               -- |hit-enter| prompt and yes/no questions
+    QuickFixLine { bg = T.surface1, gui = 'bold' },                  -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+    SpecialKey { fg = T.text1 },                                     -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+    StatusLine { fg = T.text0, bg = T.surface1 },                    -- Status line of current window
+    StatusLineNC { StatusLine, fg = T.text1 },                       -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    TabLine { Normal, fg = T.subtext0 },                             -- Tab pages line, not active tab page label
+    TabLineFill { Normal },                                          -- Tab pages line, where there are no labels
+    TabLineSel { PmenuSel },                                         -- Tab pages line, active tab page label
+    Title { fg = T.title, gui = 'bold' },                            -- Titles for output from ":set all", ":autocmd" etc.
+    Visual { bg = Mix.visual },                                      -- Visual mode selection
+    VisualNOS { Visual },                                            -- Visual mode selection when vim is "Not Owning the Selection".
+    Whitespace { NonText },                                          -- "nbsp", "space", "tab" and "trail" in 'listchars'
+    Winseparator { VertSplit },                                      -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
+    WildMenu { bg = T.surface1 },                                    -- Current match in 'wildmenu' completion
 
-    Todo { fg = Mix.onBlue, bg = Mix.blue, gui = 'italic' },        -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    Todo { fg = Mix.onBlue, bg = Mix.blue, gui = 'italic' },         -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     Success { fg = T.green },
     Warning { fg = T.yellow },
     Error { fg = T.red },
@@ -294,7 +297,7 @@ local theme = lush(function(injected_functions)
     healthError { Error },
 
     WarningMsg { Warning }, -- Warning messages
-    ErrorMsg { Error },    -- Error messages
+    ErrorMsg { Error },     -- Error messages
 
     -- Common vim syntax groups used for all kinds of code and markup.
     -- Commented-out groups should chain up to their preferred (*) group
@@ -306,46 +309,46 @@ local theme = lush(function(injected_functions)
 
     FuzzyMatch { fg = T.orange },
     Punctuation { fg = T.text1 },
-    Comment { fg = T.subtext1 },        -- Any comment
+    Comment { fg = T.subtext1 },         -- Any comment
 
-    Constant { fg = T.orange },         -- (*) Any constant
-    String { fg = T.green },            --   A string constant: "this is a string"
+    Constant { fg = T.orange },          -- (*) Any constant
+    String { fg = T.green },             --   A string constant: "this is a string"
     Character { fg = T.orangeEmphasis }, --   A character constant: 'c', '\n'
-    Number { fg = T.blue },             --   A number constant: 234, 0xff
-    Boolean { fg = T.pink },            --   A boolean constant: TRUE, false
-    Float { fg = T.pink },              --   A floating point constant: 2.3e10
+    Number { fg = T.blue },              --   A number constant: 234, 0xff
+    Boolean { fg = T.pink },             --   A boolean constant: TRUE, false
+    Float { fg = T.pink },               --   A floating point constant: 2.3e10
     URI { fg = T.cyan, gui = 'underline' },
 
-    Identifier { fg = T.text0 },           -- (*) Any variable name
-    Function { fg = T.blue },              --   Function name (also: methods for classes)
+    Identifier { fg = T.text0 },            -- (*) Any variable name
+    Function { fg = T.blue },               --   Function name (also: methods for classes)
 
-    Statement { fg = T.purple },           -- (*) Any statement
-    Conditional { Statement },             --   if, then, else, endif, switch, etc.
-    Repeat { Statement },                  --   for, do, while, etc.
-    Label { Statement },                   --   case, default, etc.
-    Operator { Punctuation },              --   "sizeof", "+", "*", etc.
-    Keyword { fg = T.purple },             --   any other keyword
-    Exception { Keyword },                 --   try, catch, throw
+    Statement { fg = T.purple },            -- (*) Any statement
+    Conditional { Statement },              --   if, then, else, endif, switch, etc.
+    Repeat { Statement },                   --   for, do, while, etc.
+    Label { Statement },                    --   case, default, etc.
+    Operator { Punctuation },               --   "sizeof", "+", "*", etc.
+    Keyword { fg = T.purple },              --   any other keyword
+    Exception { Keyword },                  --   try, catch, throw
 
-    PreProc { fg = T.peach },              -- (*) Generic Preprocessor
-    Include { fg = T.cyan },               --   Preprocessor #include
-    Define { Include },                    --   Preprocessor #define
-    Macro { Include },                     --   Same as Define
-    PreCondit { PreProc },                 --   Preprocessor #if, #else, #endif, etc.
+    PreProc { fg = T.peach },               -- (*) Generic Preprocessor
+    Include { fg = T.cyan },                --   Preprocessor #include
+    Define { Include },                     --   Preprocessor #define
+    Macro { Include },                      --   Same as Define
+    PreCondit { PreProc },                  --   Preprocessor #if, #else, #endif, etc.
 
-    Type { fg = T.greenSubtle },           -- (*) int, long, char, etc.
-    StorageClass { Keyword },              --   static, register, volatile, etc.
-    Structure { Type },                    --   struct, union, enum, etc.
-    Typedef { Type },                      --   A typedef
+    Type { fg = T.greenSubtle },            -- (*) int, long, char, etc.
+    StorageClass { Keyword },               --   static, register, volatile, etc.
+    Structure { Type },                     --   struct, union, enum, etc.
+    Typedef { Type },                       --   A typedef
 
-    Special { fg = T.redSubtle },          -- (*) Any special symbol
-    SpecialChar { fg = T.peach },          --   Special character in a constant
-    Tag { Special },                       --   You can use CTRL-] on this
-    Delimiter { Punctuation },             --   Character that needs attention
-    SpecialComment { fg = T.pink },        --   Special things inside a comment (e.g. '\n')
+    Special { fg = T.redSubtle },           -- (*) Any special symbol
+    SpecialChar { fg = T.peach },           --   Special character in a constant
+    Tag { Special },                        --   You can use CTRL-] on this
+    Delimiter { Punctuation },              --   Character that needs attention
+    SpecialComment { fg = T.pink },         --   Special things inside a comment (e.g. '\n')
     Debug { fg = Mix.onRed, bg = Mix.red }, --   Debugging statements
 
-    Underlined { gui = 'underline' },      -- Text that stands out, HTML links
+    Underlined { gui = 'underline' },       -- Text that stands out, HTML links
     Bold { gui = 'bold' },
     Italic { gui = 'italic' },
     -- ("Ignore", below, may be invisible...)
@@ -362,12 +365,12 @@ local theme = lush(function(injected_functions)
     diffIndexLine { fg = T.purple },
 
     -- GitSigns
-    GitSignsAdd { fg = T.green },    -- diff mode: Added line |diff.txt|
+    GitSignsAdd { fg = T.green },     -- diff mode: Added line |diff.txt|
     GitSignsChange { fg = T.purple }, -- diff mode: Changed line |diff.txt|
-    GitSignsDelete { fg = T.red },   -- diff mode: Deleted line |diff.txt|
+    GitSignsDelete { fg = T.red },    -- diff mode: Deleted line |diff.txt|
 
     -- GitGutter
-    GitGutterAdd { GitSignsAdd },      -- diff mode: Added line |diff.txt|
+    GitGutterAdd { GitSignsAdd },       -- diff mode: Added line |diff.txt|
     GitGutterChange { GitSignsChange }, -- diff mode: Changed line |diff.txt|
     GitGutterDelete { GitSignsDelete }, -- diff mode: Deleted line |diff.txt|
 
@@ -377,9 +380,9 @@ local theme = lush(function(injected_functions)
 
     -- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
     --
-    LspReferenceText { bg = T.surface1 },           -- Used for highlighting "text" references
-    LspReferenceRead { bg = T.surface1 },           -- Used for highlighting "read" references
-    LspReferenceWrite { bg = T.surface1 },          -- Used for highlighting "write" references
+    LspReferenceText { bg = T.surface1 },            -- Used for highlighting "text" references
+    LspReferenceRead { bg = T.surface1 },            -- Used for highlighting "read" references
+    LspReferenceWrite { bg = T.surface1 },           -- Used for highlighting "write" references
     LspCodeLens { fg = T.subtext1, gui = 'italic' }, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
     -- LspCodeLensSeparator        { }, -- Used to color the seperator between two or more code lens.
     -- LspSignatureActiveParameter { }, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
@@ -387,53 +390,53 @@ local theme = lush(function(injected_functions)
 
     -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
     --
-    DiagnosticError { Error },                                                -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticWarn { Warning },                                               -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticInfo { fg = T.cyan },                                           -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticHint { fg = T.subtext0 },                                       -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticVirtualTextError { fg = Mix.onRed, bg = Mix.red },              -- Used for "Error" diagnostic virtual text.
-    DiagnosticVirtualTextWarn { fg = Mix.onYellow, bg = Mix.yellow },         -- Used for "Warn" diagnostic virtual text.
-    DiagnosticVirtualTextInfo { fg = Mix.onCyan, bg = Mix.cyan },             -- Used for "Info" diagnostic virtual text.
-    DiagnosticVirtualTextHint { fg = T.subtext0, bg = T.surface1 },           -- Used for "Hint" diagnostic virtual text.
+    DiagnosticError { Error },                                                 -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticWarn { Warning },                                                -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticInfo { fg = T.cyan },                                            -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticHint { fg = T.subtext0 },                                        -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticVirtualTextError { fg = Mix.onRed, bg = Mix.red },               -- Used for "Error" diagnostic virtual text.
+    DiagnosticVirtualTextWarn { fg = Mix.onYellow, bg = Mix.yellow },          -- Used for "Warn" diagnostic virtual text.
+    DiagnosticVirtualTextInfo { fg = Mix.onCyan, bg = Mix.cyan },              -- Used for "Info" diagnostic virtual text.
+    DiagnosticVirtualTextHint { fg = T.subtext0, bg = T.surface1 },            -- Used for "Hint" diagnostic virtual text.
     DiagnosticUnderlineError { gui = 'underdotted', sp = DiagnosticError.fg }, -- Used to underline "Error" diagnostics.
-    DiagnosticUnderlineWarn { gui = 'underdotted', sp = DiagnosticWarn.fg },  -- Used to underline "Warn" diagnostics.
-    DiagnosticUnderlineInfo { gui = 'underdotted', sp = DiagnosticInfo.fg },  -- Used to underline "Info" diagnostics.
-    DiagnosticUnderlineHint { gui = 'underdotted', sp = DiagnosticHint.fg },  -- Used to underline "Hint" diagnostics.
-    DiagnosticFloatingError { DiagnosticError },                              -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
-    DiagnosticFloatingWarn { DiagnosticWarn },                                -- Used to color "Warn" diagnostic messages in diagnostics float.
-    DiagnosticFloatingInfo { DiagnosticInfo },                                -- Used to color "Info" diagnostic messages in diagnostics float.
-    DiagnosticFloatingHint { DiagnosticHint },                                -- Used to color "Hint" diagnostic messages in diagnostics float.
-    DiagnosticSignError { DiagnosticError },                                  -- Used for "Error" signs in sign column.
-    DiagnosticSignWarn { DiagnosticWarn },                                    -- Used for "Warn" signs in sign column.
-    DiagnosticSignInfo { DiagnosticInfo },                                    -- Used for "Info" signs in sign column.
-    DiagnosticSignHint { DiagnosticHint },                                    -- Used for "Hint" signs in sign column.
+    DiagnosticUnderlineWarn { gui = 'underdotted', sp = DiagnosticWarn.fg },   -- Used to underline "Warn" diagnostics.
+    DiagnosticUnderlineInfo { gui = 'underdotted', sp = DiagnosticInfo.fg },   -- Used to underline "Info" diagnostics.
+    DiagnosticUnderlineHint { gui = 'underdotted', sp = DiagnosticHint.fg },   -- Used to underline "Hint" diagnostics.
+    DiagnosticFloatingError { DiagnosticError },                               -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
+    DiagnosticFloatingWarn { DiagnosticWarn },                                 -- Used to color "Warn" diagnostic messages in diagnostics float.
+    DiagnosticFloatingInfo { DiagnosticInfo },                                 -- Used to color "Info" diagnostic messages in diagnostics float.
+    DiagnosticFloatingHint { DiagnosticHint },                                 -- Used to color "Hint" diagnostic messages in diagnostics float.
+    DiagnosticSignError { DiagnosticError },                                   -- Used for "Error" signs in sign column.
+    DiagnosticSignWarn { DiagnosticWarn },                                     -- Used for "Warn" signs in sign column.
+    DiagnosticSignInfo { DiagnosticInfo },                                     -- Used for "Info" signs in sign column.
+    DiagnosticSignHint { DiagnosticHint },                                     -- Used for "Hint" signs in sign column.
 
-    LspDiagnosticsDefaultError { DiagnosticError },                           -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
-    LspDiagnosticsDefaultWarning { DiagnosticWarn },                          -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
-    LspDiagnosticsDefaultInformation { DiagnosticInfo },                      -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
-    LspDiagnosticsDefaultHint { DiagnosticHint },                             -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
-    LspDiagnosticsVirtualTextError { DiagnosticVirtualTextError },            -- Used for "Error" diagnostic virtual text.
-    LspDiagnosticsVirtualTextWarning { DiagnosticVirtualTextWarn },           -- Used for "Warn" diagnostic virtual text.
-    LspDiagnosticsVirtualTextInformation { DiagnosticVirtualTextInfo },       -- Used for "Info" diagnostic virtual text.
-    LspDiagnosticsVirtualTextHint { DiagnosticVirtualTextHint },              -- Used for "Hint" diagnostic virtual text.
-    LspDiagnosticsUnderlineError { DiagnosticUnderlineError },                -- Used to underline "Error" diagnostics.
-    LspDiagnosticsUnderlineWarning { DiagnosticUnderlineWarn },               -- Used to underline "Warn" diagnostics.
-    LspDiagnosticsUnderlineInformation { DiagnosticUnderlineInfo },           -- Used to underline "Info" diagnostics.
-    LspDiagnosticsUnderlineHint { DiagnosticUnderlineHint },                  -- Used to underline "Hint" diagnostics.
-    LspDiagnosticsFloatingError { DiagnosticFloatingError },                  -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
-    LspDiagnosticsFloatingWarning { DiagnosticFloatingWarn },                 -- Used to color "Warn" diagnostic messages in diagnostics float.
-    LspDiagnosticsFloatingInfo { DiagnosticFloatingInfo },                    -- Used to color "Info" diagnostic messages in diagnostics float.
-    LspDiagnosticsFloatingHint { DiagnosticFloatingHint },                    -- Used to color "Hint" diagnostic messages in diagnostics float.
-    LspDiagnosticsSignError { DiagnosticSignError },                          -- Used for "Error" signs in sign column.
-    LspDiagnosticsSignWarning { DiagnosticSignWarn },                         -- Used for "Warn" signs in sign column.
-    LspDiagnosticsSignInformation { DiagnosticSignInfo },                     -- Used for "Info" signs in sign column.
-    LspDiagnosticsSignHint { DiagnosticSignHint },                            -- Used for "Hint" signs in sign column.
+    LspDiagnosticsDefaultError { DiagnosticError },                            -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
+    LspDiagnosticsDefaultWarning { DiagnosticWarn },                           -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
+    LspDiagnosticsDefaultInformation { DiagnosticInfo },                       -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
+    LspDiagnosticsDefaultHint { DiagnosticHint },                              -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
+    LspDiagnosticsVirtualTextError { DiagnosticVirtualTextError },             -- Used for "Error" diagnostic virtual text.
+    LspDiagnosticsVirtualTextWarning { DiagnosticVirtualTextWarn },            -- Used for "Warn" diagnostic virtual text.
+    LspDiagnosticsVirtualTextInformation { DiagnosticVirtualTextInfo },        -- Used for "Info" diagnostic virtual text.
+    LspDiagnosticsVirtualTextHint { DiagnosticVirtualTextHint },               -- Used for "Hint" diagnostic virtual text.
+    LspDiagnosticsUnderlineError { DiagnosticUnderlineError },                 -- Used to underline "Error" diagnostics.
+    LspDiagnosticsUnderlineWarning { DiagnosticUnderlineWarn },                -- Used to underline "Warn" diagnostics.
+    LspDiagnosticsUnderlineInformation { DiagnosticUnderlineInfo },            -- Used to underline "Info" diagnostics.
+    LspDiagnosticsUnderlineHint { DiagnosticUnderlineHint },                   -- Used to underline "Hint" diagnostics.
+    LspDiagnosticsFloatingError { DiagnosticFloatingError },                   -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
+    LspDiagnosticsFloatingWarning { DiagnosticFloatingWarn },                  -- Used to color "Warn" diagnostic messages in diagnostics float.
+    LspDiagnosticsFloatingInfo { DiagnosticFloatingInfo },                     -- Used to color "Info" diagnostic messages in diagnostics float.
+    LspDiagnosticsFloatingHint { DiagnosticFloatingHint },                     -- Used to color "Hint" diagnostic messages in diagnostics float.
+    LspDiagnosticsSignError { DiagnosticSignError },                           -- Used for "Error" signs in sign column.
+    LspDiagnosticsSignWarning { DiagnosticSignWarn },                          -- Used for "Warn" signs in sign column.
+    LspDiagnosticsSignInformation { DiagnosticSignInfo },                      -- Used for "Info" signs in sign column.
+    LspDiagnosticsSignHint { DiagnosticSignHint },                             -- Used for "Hint" signs in sign column.
 
     -- Spell-checker.
-    SpellBad { DiagnosticUnderlineError, gui = 'undercurl' }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
-    SpellCap { DiagnosticUnderlineWarn, gui = 'undercurl' },  -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
+    SpellBad { DiagnosticUnderlineError, gui = 'undercurl' },  -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+    SpellCap { DiagnosticUnderlineWarn, gui = 'undercurl' },   -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal { DiagnosticUnderlineInfo, gui = 'undercurl' }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
-    SpellRare { DiagnosticUnderlineHint, gui = 'undercurl' }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
+    SpellRare { DiagnosticUnderlineHint, gui = 'undercurl' },  -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
 
     -- Tree-Sitter syntax groups.
     --
@@ -462,80 +465,80 @@ local theme = lush(function(injected_functions)
     sym '@comment' { Comment }, -- Comment
     sym '@error' { Error },
     sym '@none' {},
-    sym '@punctuation' { Delimiter },                             -- Delimiter
-    sym '@constant' { Constant },                                 -- Constant
-    sym '@constant.builtin' { Special },                          -- Special
-    sym '@constant.macro' { Define },                             -- Define
-    sym '@define' { Define },                                     -- Define
-    sym '@macro' { Macro },                                       -- Macro
-    sym '@string' { String },                                     -- String
-    sym '@string.regex' { String },                               -- String
-    sym '@string.escape' { SpecialChar },                         -- SpecialChar
-    sym '@string.special' { SpecialChar },                        -- SpecialChar
-    sym '@character' { Character },                               -- Character
-    sym '@character.special' { SpecialChar },                     -- SpecialChar
-    sym '@number' { Number },                                     -- Number
-    sym '@boolean' { Boolean },                                   -- Boolean
-    sym '@float' { Float },                                       -- Float
-    sym '@function' { Function },                                 -- Function
-    sym '@function.builtin' { fg = T.blue },                      -- Special
-    sym '@function.call' { Function },                            -- Macro
-    sym '@function.macro' { Macro },                              -- Macro
-    sym '@parameter' { Identifier },                              -- Identifier
-    sym '@method' { Function },                                   -- Function
-    sym '@method.call' { Function },                              -- Function
-    sym '@field' { Identifier },                                  -- Identifier
-    sym '@property' { Identifier },                               -- Identifier
-    sym '@constructor' {},                                        -- Special
-    sym '@conditional' { Conditional },                           -- Conditional
-    sym '@conditional.ternary' { Operator },                      -- Conditional
-    sym '@repeat' { Repeat },                                     -- Repeat
-    sym '@label' {},                                              -- Label
-    sym '@operator' { Operator },                                 -- Operator
-    sym '@keyword' { Keyword },                                   -- various keywords
-    sym '@keyword.function' { sym '@keyword' },                   -- keywords that define a function (e.g. `func` in Go, `def` in Python)
-    sym '@keyword.operator' { sym '@keyword' },                   -- operators that are English words (e.g. `and` / `or`)
-    sym '@keyword.return' { fg = T.redSubtle },                   -- keywords like `return` and `yield`
-    sym '@exception' { Exception },                               -- Exception
-    sym '@variable' {},                                           -- Identifier
-    sym '@variable.builtin' { fg = T.purple },                    -- Identifier
-    sym '@type' { Type },                                         -- Type
+    sym '@punctuation' { Delimiter },                            -- Delimiter
+    sym '@constant' { Constant },                                -- Constant
+    sym '@constant.builtin' { Special },                         -- Special
+    sym '@constant.macro' { Define },                            -- Define
+    sym '@define' { Define },                                    -- Define
+    sym '@macro' { Macro },                                      -- Macro
+    sym '@string' { String },                                    -- String
+    sym '@string.regex' { String },                              -- String
+    sym '@string.escape' { SpecialChar },                        -- SpecialChar
+    sym '@string.special' { SpecialChar },                       -- SpecialChar
+    sym '@character' { Character },                              -- Character
+    sym '@character.special' { SpecialChar },                    -- SpecialChar
+    sym '@number' { Number },                                    -- Number
+    sym '@boolean' { Boolean },                                  -- Boolean
+    sym '@float' { Float },                                      -- Float
+    sym '@function' { Function },                                -- Function
+    sym '@function.builtin' { fg = T.blue },                     -- Special
+    sym '@function.call' { Function },                           -- Macro
+    sym '@function.macro' { Macro },                             -- Macro
+    sym '@parameter' { Identifier },                             -- Identifier
+    sym '@method' { Function },                                  -- Function
+    sym '@method.call' { Function },                             -- Function
+    sym '@field' { Identifier },                                 -- Identifier
+    sym '@property' { Identifier },                              -- Identifier
+    sym '@constructor' {},                                       -- Special
+    sym '@conditional' { Conditional },                          -- Conditional
+    sym '@conditional.ternary' { Operator },                     -- Conditional
+    sym '@repeat' { Repeat },                                    -- Repeat
+    sym '@label' {},                                             -- Label
+    sym '@operator' { Operator },                                -- Operator
+    sym '@keyword' { Keyword },                                  -- various keywords
+    sym '@keyword.function' { sym '@keyword' },                  -- keywords that define a function (e.g. `func` in Go, `def` in Python)
+    sym '@keyword.operator' { sym '@keyword' },                  -- operators that are English words (e.g. `and` / `or`)
+    sym '@keyword.return' { fg = T.redSubtle },                  -- keywords like `return` and `yield`
+    sym '@exception' { Exception },                              -- Exception
+    sym '@variable' {},                                          -- Identifier
+    sym '@variable.builtin' { fg = T.purple },                   -- Identifier
+    sym '@type' { Type },                                        -- Type
     sym '@type.builtin' { Type },
-    sym '@type.definition' { Typedef },                           -- Typedef
+    sym '@type.definition' { Typedef },                          -- Typedef
     sym '@type.qualifier' { fg = T.redSubtle },
-    sym '@storageclass' { StorageClass },                         -- StorageClass
-    sym '@structure' { Structure },                               -- Structure
-    sym '@namespace' { fg = T.redSubtle },                        -- Identifier
-    sym '@symbol' {},                                             -- symbols or atoms
-    sym '@include' { Keyword },                                   -- Include
+    sym '@storageclass' { StorageClass },                        -- StorageClass
+    sym '@structure' { Structure },                              -- Structure
+    sym '@namespace' { fg = T.redSubtle },                       -- Identifier
+    sym '@symbol' {},                                            -- symbols or atoms
+    sym '@include' { Keyword },                                  -- Include
     sym '@attribute' { PreProc },
-    sym '@preproc' { PreProc },                                   -- PreProc
-    sym '@debug' { Debug },                                       -- Debug
-    sym '@tag' { Tag },                                           -- XML tag names
-    sym '@tag.attribute' { Identifier },                          -- XML tag attributes
-    sym '@tag.delimiter' { Punctuation },                         -- XML tag delimiters
-    sym '@punctuation.delimiter' { Punctuation },                 -- delimiters (e.g. `;` / `.` / `,`)
-    sym '@punctuation.bracket' { sym '@punctuation.delimiter' },  -- brackets (e.g. `()` / `{}` / `[]`)
-    sym '@punctuation.special' { SpecialChar },                   -- special symbols (e.g. `{}` in string interpolation)
+    sym '@preproc' { PreProc },                                  -- PreProc
+    sym '@debug' { Debug },                                      -- Debug
+    sym '@tag' { Tag },                                          -- XML tag names
+    sym '@tag.attribute' { Identifier },                         -- XML tag attributes
+    sym '@tag.delimiter' { Punctuation },                        -- XML tag delimiters
+    sym '@punctuation.delimiter' { Punctuation },                -- delimiters (e.g. `;` / `.` / `,`)
+    sym '@punctuation.bracket' { sym '@punctuation.delimiter' }, -- brackets (e.g. `()` / `{}` / `[]`)
+    sym '@punctuation.special' { SpecialChar },                  -- special symbols (e.g. `{}` in string interpolation)
     sym '@conceal' { Conceal },
-    sym '@scope' {},                                              -- scope block
-    sym '@reference' {},                                          -- scope block
-    sym '@inlay.hint' { LspCodeLens },                            -- identifier reference
+    sym '@scope' {},                                             -- scope block
+    sym '@reference' {},                                         -- scope block
+    sym '@inlay.hint' { LspCodeLens },                           -- identifier reference
 
     -- Locals
-    sym '@definition' {},                                -- various definitions
-    sym '@definition.constant' { sym '@constant' },      -- constants
-    sym '@definition.function' { sym '@function' },      -- functions
-    sym '@definition.method' { sym '@method' },          -- methods
-    sym '@definition.var' { fg = t.cyan0 },              -- variables
-    sym '@definition.parameter' { sym '@parameter' },    -- parameters
-    sym '@definition.macro' { sym '@function.macro' },   -- preprocessor macros
-    sym '@definition.type' { Type },                     -- types or classes
-    sym '@definition.field' { sym '@definition' },       -- fields or properties
-    sym '@definition.enum' { sym '@definition' },        -- enumerations
-    sym '@definition.namespace' { sym '@namespace' },    -- modules or namespaces
-    sym '@definition.import' { sym '@definition' },      -- imported names
-    sym '@definition.associated' { sym '@definition' },  -- the associated type of a variable
+    sym '@definition' {},                               -- various definitions
+    sym '@definition.constant' { sym '@constant' },     -- constants
+    sym '@definition.function' { sym '@function' },     -- functions
+    sym '@definition.method' { sym '@method' },         -- methods
+    sym '@definition.var' { fg = t.cyan0 },             -- variables
+    sym '@definition.parameter' { sym '@parameter' },   -- parameters
+    sym '@definition.macro' { sym '@function.macro' },  -- preprocessor macros
+    sym '@definition.type' { Type },                    -- types or classes
+    sym '@definition.field' { sym '@definition' },      -- fields or properties
+    sym '@definition.enum' { sym '@definition' },       -- enumerations
+    sym '@definition.namespace' { sym '@namespace' },   -- modules or namespaces
+    sym '@definition.import' { sym '@definition' },     -- imported names
+    sym '@definition.associated' { sym '@definition' }, -- the associated type of a variable
 
     -- LSP
     sym '@lsp.mod.declaration.c' {},
@@ -568,7 +571,7 @@ local theme = lush(function(injected_functions)
     markdownLinkText { URI },
     markdownUrl { URI },
 
-    debugPC { CursorLine },   -- used for highlighting the current line in terminal-debug
+    debugPC { CursorLine },    -- used for highlighting the current line in terminal-debug
     debugBreakpoint { Debug }, -- used for breakpoint colors in terminal-debug
 
     -- Telescope
@@ -586,6 +589,25 @@ local theme = lush(function(injected_functions)
     TelescopePromptNormal { TelescopeNormal },
     TelescopeResultsTitle { TelescopeTitle },
     TelescopePromptTitle { TelescopeTitle, fg = T.purple },
+
+    -- FzfLuaNormal            = { 'winopts.hl.normal', 'Normal' },
+    -- FzfLuaBorder            = { 'winopts.hl.border', 'Normal' },
+    -- FzfLuaCursor            = { 'winopts.hl.cursor', 'Cursor' },
+    -- FzfLuaCursorLine        = { 'winopts.hl.cursorline', 'CursorLine' },
+    -- FzfLuaCursorLineNr      = { 'winopts.hl.cursornr', 'CursorLineNr' },
+    -- FzfLuaSearch            = { 'winopts.hl.search', 'IncSearch' },
+    -- FzfLuaTitle             = { 'winopts.hl.title', 'FzfLuaNormal' },
+    -- FzfLuaScrollBorderEmpty = { 'winopts.hl.scrollborder_e', 'FzfLuaBorder' },
+    -- FzfLuaScrollBorderFull  = { 'winopts.hl.scrollborder_f', 'FzfLuaBorder' },
+    -- FzfLuaScrollFloatEmpty  = { 'winopts.hl.scrollfloat_e', 'PmenuSbar' },
+    -- FzfLuaScrollFloatFull   = { 'winopts.hl.scrollfloat_f', 'PmenuThumb' },
+    -- FzfLuaHelpNormal        = { 'winopts.hl.help_normal', 'FzfLuaNormal' },
+    -- FzfLuaHelpBorder        = { 'winopts.hl.help_border', 'FzfLuaBorder' },
+    -- FzfLuaPreviewNormal     = { 'winopts.hl.preview_normal', 'FzfLuaNormal' },
+    -- FzfLuaPreviewBorder     = { 'winopts.hl.preview_border', 'FzfLuaBorder' },
+    FzfLuaNormal { Normal, bg = T.surface1 },
+    FzfLuaBorder { fg = T.surface1, bg = T.surface1 },
+    FzfLuaTitle { fg = T.blue, gui = 'bold' },
 
     -- Cmp
     CmpItemAbbr { fg = T.subtext0 },
