@@ -408,3 +408,8 @@ vim.cmd "let g:colors_name='chroma-static'"
 for group, attrs in pairs(colors) do
   vim.api.nvim_set_hl(0, group, attrs)
 end
+
+-- Update terminal colors.
+for i in 0,15 do
+  vim.g[string.format('terminal_color_%i', i)] = colors[string.format('TerminalColor%i', i)].fg
+end
