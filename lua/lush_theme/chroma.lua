@@ -1,38 +1,4 @@
---
--- Built with,
---
---        ,gggg,
---       d8" "8I                         ,dPYb,
---       88  ,dP                         IP'`Yb
---    8888888P"                          I8  8I
---       88                              I8  8'
---       88        gg      gg    ,g,     I8 dPgg,
---  ,aa,_88        I8      8I   ,8'8,    I8dP" "8I
--- dP" "88P        I8,    ,8I  ,8'  Yb   I8P    I8
--- Yb,_,d88b,,_   ,d8b,  ,d8b,,8'_   8) ,d8     I8,
---  "Y8P"  "Y888888P'"Y88P"`Y8P' "YY8P8P88P     `Y8
---
-
--- This is a starter colorscheme for use with Lush,
--- for usage guides, see :h lush or :LushRunTutorial
-
---
--- Note: Because this is a lua file, vim will append it to the runtime,
---       which means you can require(...) it in other lua code (this is useful),
---       but you should also take care not to conflict with other libraries.
---
---       (This is a lua quirk, as it has somewhat poor support for namespacing.)
---
---       Basically, name your file,
---
---       "super_theme/lua/lush_theme/super_theme_dark.lua",
---
---       not,
---
---       "super_theme/lua/dark.lua".
---
---       With that caveat out of the way...
---
+-- vi:nowrap
 
 -- Enable lush.ify on this file, run:
 --
@@ -140,11 +106,43 @@ local Pantone = {
   },
 }
 
+local Borrow = {
+  rosewater = hsl '#f5e0dc',
+  flamingo = hsl '#f2cdcd',
+  pink = hsl '#f5c2e7',
+  mauve = hsl '#cba6f7',
+  red = hsl '#f38ba8',
+  maroon = hsl '#eba0ac',
+  peach = hsl '#fab387',
+  yellow = hsl '#f9e2af',
+  green = hsl '#a6e3a1',
+  teal = hsl '#94e2d5',
+  sky = hsl '#89dceb',
+  sapphire = hsl '#74c7ec',
+  blue = hsl '#89b4fa',
+  lavender = hsl '#b4befe',
+  text = hsl '#cdd6f4',
+  subtext1 = hsl '#bac2de',
+  subtext0 = hsl '#a6adc8',
+  overlay2 = hsl '#9399b2',
+  overlay1 = hsl '#7f849c',
+  overlay0 = hsl '#6c7086',
+  surface2 = hsl '#585b70',
+  surface1 = hsl '#45475a',
+  surface0 = hsl '#313244',
+  base = hsl '#1e1e2e',
+  mantle = hsl '#181825',
+  crust = hsl '#11111b',
+}
+
 local T = {
-  shadow = Pantone.ExtendedGamutCoated.Black6,
-  surface0 = Pantone.ExtendedGamutCoated.c433.darken(15),
-  surface1 = Pantone.ColorBridgeCoated.c532,
-  surface2 = Pantone.ColorBridgeCoated.c4280,
+  shadow = Pantone.ExtendedGamutCoated.Black6.darken(10),
+  surface0 = Pantone.ExtendedGamutCoated.Black6.darken(5),
+  surface1 = Pantone.ExtendedGamutCoated.Black6,
+  surface2 = Pantone.ExtendedGamutCoated.Black6.lighten(5),
+
+  overlay0 = Pantone.ColorBridgeCoated.c532,
+  overlay1 = Pantone.ColorBridgeCoated.c4280,
 
   scrollbar = Pantone.ColorBridgeCoated.c532,
   scrollbarThumb = Pantone.ExtendedGamutCoated.c7544,
@@ -178,9 +176,9 @@ local T = {
   pink = Pantone.ColorBridgeUncoated.c672,
   pinkEmphasis = Pantone.ExtendedGamutCoated.c244,
 
-  redSubtle = Pantone.ColorBridgeUncoated.c1775,
-  red = Pantone.ExtendedGamutCoated.c2345,
-  -- redEmphasis = Pantone.ExtendedGamutCoated.c2346,
+  -- redSubtle
+  red = Pantone.ColorBridgeUncoated.c1775,
+  redEmphasis = Pantone.ExtendedGamutCoated.c2345,
 
   orange = Pantone.ExtendedGamutCoated.c727,
   orangeEmphasis = Pantone.ExtendedGamutCoated.c472,
@@ -197,10 +195,10 @@ local Mix = {
   green = Pantone.FormulaGuideCoated.c2285.mix(T.surface0, 88),
   onGreen = Pantone.FormulaGuideCoated.c2285.desaturate(15).lighten(25),
 
-  cyan = Pantone.FormulaGuideCoated.c2226.mix(T.surface0, 90),
+  cyan = Pantone.FormulaGuideCoated.c2226.mix(T.surface0, 80),
   onCyan = Pantone.FormulaGuideCoated.c2226.desaturate(15).lighten(50),
 
-  blue = Pantone.FormulaGuideCoated.c2727.mix(T.surface0, 90),
+  blue = Pantone.FormulaGuideCoated.c2727.mix(T.surface0, 80),
   onBlue = Pantone.FormulaGuideCoated.c2727.desaturate(15).lighten(50),
 
   purple = Pantone.FormulaGuideCoated.c7442.mix(T.surface0, 80),
@@ -209,9 +207,36 @@ local Mix = {
   yellow = Pantone.FormulaGuideCoated.c2011.mix(T.surface0, 88),
   onYellow = Pantone.FormulaGuideCoated.c2011.saturate(50).lighten(45),
 
-  red = Pantone.FormulaGuideCoated.c3556.mix(T.surface0, 88),
+  red = Pantone.FormulaGuideCoated.c3556.mix(T.surface0, 80),
   onRed = Pantone.FormulaGuideCoated.c3556.saturate(50).lighten(45),
 }
+
+-- Terminal colors.
+-- TODO: move this somewhere more appropriate (this is probably going to be
+-- dropped during :Shipwright compilation).
+local Term = {
+  T.surface0, -- Black
+  T.red,
+  T.green,
+  T.yellow,
+  T.blue,
+  T.purple,
+  T.cyan,
+  T.text0,
+
+  T.subtext1, -- Bright black
+  T.redEmphasis,
+  T.greenSubtle,
+  T.yellowSubtle,
+  T.blueSubtle,
+  T.purpleEmphasis,
+  T.cyanEmphasis,
+  T.text1,
+}
+
+for k, v in pairs(Term) do
+  vim.g[string.format('terminal_color_%i', k - 1)] = v.hex
+end
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
@@ -269,7 +294,7 @@ local theme = lush(function(injected_functions)
     MsgArea { fg = T.text0 },                                        -- Area for messages and cmdline
     -- MsgSeparat or { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
     MoreMsg { fg = Mix.onCyan, bg = Mix.cyan },                      -- |more-prompt|
-    Pmenu { Normal },                                                -- Popup menu: Normal item.
+    Pmenu { fg = T.text0, bg = T.overlay0 },                         -- Popup menu: Normal item.
     PmenuSel { fg = Mix.onBlue, bg = Mix.blue },                     -- Popup menu: Selected item.
     PmenuSbar { bg = T.scrollbar },                                  -- Popup menu: Scrollbar.
     PmenuThumb { fg = T.scrollbarThumb },                            -- Popup menu: Thumb of the scrollbar.
@@ -286,7 +311,7 @@ local theme = lush(function(injected_functions)
     VisualNOS { Visual },                                            -- Visual mode selection when vim is "Not Owning the Selection".
     Whitespace { NonText },                                          -- "nbsp", "space", "tab" and "trail" in 'listchars'
     Winseparator { VertSplit },                                      -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
-    WildMenu { bg = T.surface1 },                                    -- Current match in 'wildmenu' completion
+    WildMenu { bg = T.overlay0 },                                    -- Current match in 'wildmenu' completion
 
     Todo { fg = Mix.onBlue, bg = Mix.blue, gui = 'italic' },         -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     Success { fg = T.green },
@@ -300,6 +325,24 @@ local theme = lush(function(injected_functions)
 
     WarningMsg { Warning }, -- Warning messages
     ErrorMsg { Error },     -- Error messages
+
+    -- Terminal colors.
+    TerminalColor0 { fg = Term[1] },
+    TerminalColor1 { fg = Term[2] },
+    TerminalColor2 { fg = Term[3] },
+    TerminalColor3 { fg = Term[4] },
+    TerminalColor4 { fg = Term[5] },
+    TerminalColor5 { fg = Term[6] },
+    TerminalColor6 { fg = Term[7] },
+    TerminalColor7 { fg = Term[8] },
+    TerminalColor8 { fg = Term[9] },
+    TerminalColor9 { fg = Term[10] },
+    TerminalColor10 { fg = Term[11] },
+    TerminalColor11 { fg = Term[12] },
+    TerminalColor12 { fg = Term[13] },
+    TerminalColor13 { fg = Term[14] },
+    TerminalColor14 { fg = Term[15] },
+    TerminalColor15 { fg = Term[16] },
 
     -- Common vim syntax groups used for all kinds of code and markup.
     -- Commented-out groups should chain up to their preferred (*) group
@@ -343,7 +386,7 @@ local theme = lush(function(injected_functions)
     Structure { Type },                     --   struct, union, enum, etc.
     Typedef { Type },                       --   A typedef
 
-    Special { fg = T.redSubtle },           -- (*) Any special symbol
+    Special { fg = T.redEmphasis },         -- (*) Any special symbol
     SpecialChar { fg = T.peach },           --   Special character in a constant
     Tag { Special },                        --   You can use CTRL-] on this
     Delimiter { Punctuation },              --   Character that needs attention
@@ -382,10 +425,10 @@ local theme = lush(function(injected_functions)
 
     -- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
     --
-    LspReferenceText { bg = T.surface1 },            -- Used for highlighting "text" references
-    LspReferenceRead { bg = T.surface1 },            -- Used for highlighting "read" references
-    LspReferenceWrite { bg = T.surface1 },           -- Used for highlighting "write" references
-    LspCodeLens { fg = T.subtext1, gui = 'italic' }, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
+    LspReferenceText { fg = Mix.onBlue, bg = Mix.blue }, -- Used for highlighting "text" references
+    LspReferenceRead { LspReferenceText },               -- Used for highlighting "read" references
+    LspReferenceWrite { LspReferenceText },              -- Used for highlighting "write" references
+    LspCodeLens { fg = T.subtext1, gui = 'italic' },     -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
     -- LspCodeLensSeparator        { }, -- Used to color the seperator between two or more code lens.
     -- LspSignatureActiveParameter { }, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
     LspParameter { fg = T.peach, gui = 'italic' }, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
@@ -500,17 +543,17 @@ local theme = lush(function(injected_functions)
     sym '@keyword' { Keyword },                                  -- various keywords
     sym '@keyword.function' { sym '@keyword' },                  -- keywords that define a function (e.g. `func` in Go, `def` in Python)
     sym '@keyword.operator' { sym '@keyword' },                  -- operators that are English words (e.g. `and` / `or`)
-    sym '@keyword.return' { fg = T.redSubtle },                  -- keywords like `return` and `yield`
+    sym '@keyword.return' { fg = T.redEmphasis },                -- keywords like `return` and `yield`
     sym '@exception' { Exception },                              -- Exception
     sym '@variable' {},                                          -- Identifier
     sym '@variable.builtin' { fg = T.purple },                   -- Identifier
     sym '@type' { Type },                                        -- Type
     sym '@type.builtin' { Type },
     sym '@type.definition' { Typedef },                          -- Typedef
-    sym '@type.qualifier' { fg = T.redSubtle },
+    sym '@type.qualifier' { fg = T.redEmphasis },
     sym '@storageclass' { StorageClass },                        -- StorageClass
     sym '@structure' { Structure },                              -- Structure
-    sym '@namespace' { fg = T.redSubtle },                       -- Identifier
+    sym '@namespace' { fg = T.redEmphasis },                     -- Identifier
     sym '@symbol' {},                                            -- symbols or atoms
     sym '@include' { Keyword },                                  -- Include
     sym '@attribute' { PreProc },
@@ -607,9 +650,22 @@ local theme = lush(function(injected_functions)
     -- FzfLuaHelpBorder        = { 'winopts.hl.help_border', 'FzfLuaBorder' },
     -- FzfLuaPreviewNormal     = { 'winopts.hl.preview_normal', 'FzfLuaNormal' },
     -- FzfLuaPreviewBorder     = { 'winopts.hl.preview_border', 'FzfLuaBorder' },
-    FzfLuaNormal { Normal, bg = T.surface1 },
-    FzfLuaBorder { fg = T.surface1, bg = T.surface1 },
+    FzfLuaNormal { Normal, bg = T.overlay0 },
+    FzfLuaBorder { fg = T.overlay0, bg = T.overlay0 },
     FzfLuaTitle { fg = T.blue, gui = 'bold' },
+    -- fzf-lua only passes down the .fg attribute.
+    FzfLuaColorsFg { fg = T.text0 },
+    FzfLuaColorsFgSel { FzfLuaColorsFg },
+    FzfLuaColorsBg { fg = T.surface0 },
+    FzfLuaColorsBgSel { FzfLuaColorsBg },
+    FzfLuaColorsHl { fg = T.blue },
+    FzfLuaColorsHlSel { FzfLuaColorsHl },
+    FzfLuaColorsInfo { fg = T.subtext1 },
+    FzfLuaColorsPrompt { fg = T.purple },
+    FzfLuaColorsPointer { fg = T.blue },
+    FzfLuaColorsMarker { fg = T.green },
+    FzfLuaColorsSpinner { FzfLuaColorsInfo },
+    FzfLuaColorsHeader { FzfLuaColorsInfo },
 
     -- Cmp
     CmpItemAbbr { fg = T.subtext0 },
@@ -646,10 +702,50 @@ local theme = lush(function(injected_functions)
     CmpItemKindOperator { Operator },
     CmpItemKindTypeParameter { sym '@parameter' },
     CmpItemKindCopilot { fg = T.peach },
+
+    LualineANormal { fg = Mix.onBlue, bg = Mix.blue },
+    LualineAInsert { fg = Mix.onGreen, bg = Mix.green },
+    LualineAVisual { fg = Mix.onCyan, bg = Mix.cyan },
+    LualineAReplace { fg = Mix.onRed, bg = Mix.red },
+    LualineACommand { fg = Mix.onPurple, bg = Mix.purple },
+    LualineAInactive { fg = T.text1, bg = T.surface2 },
+
+    LualineBNormal { fg = T.text1, bg = T.surface1 },
+    LualineBInsert { LualineBNormal },
+    LualineBVisual { LualineBNormal },
+    LualineBReplace { LualineBNormal },
+    LualineBCommand { LualineBNormal },
+    LualineBInactive { LualineBNormal },
+
+    LualineCNormal { fg = T.text1, bg = T.surface2 },
+    LualineCInsert { LualineCNormal },
+    LualineCVisual { LualineCNormal },
+    LualineCReplace { LualineCNormal },
+    LualineCCommand { LualineCNormal },
+    LualineCInactive { LualineCNormal },
+
+    LualineXNormal { LualineCNormal },
+    LualineXInsert { LualineCInsert },
+    LualineXVisual { LualineCVisual },
+    LualineXReplace { LualineCReplace },
+    LualineXCommand { LualineCCommand },
+    LualineXInactive { LualineCInactive },
+
+    LualineYNormal { LualineBNormal },
+    LualineYInsert { LualineBInsert },
+    LualineYVisual { LualineBVisual },
+    LualineYReplace { LualineBReplace },
+    LualineYCommand { LualineBCommand },
+    LualineYInactive { LualineBInactive },
+
+    LualineZNormal { LualineANormal },
+    LualineZInsert { LualineAInsert },
+    LualineZVisual { LualineAVisual },
+    LualineZReplace { LualineAReplace },
+    LualineZCommand { LualineACommand },
+    LualineZInactive { LualineAInactive },
   }
 end)
 
 -- Return our parsed theme for extension or use elsewhere.
 return theme
-
--- vi:nowrap
