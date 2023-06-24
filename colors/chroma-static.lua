@@ -410,6 +410,6 @@ for group, attrs in pairs(colors) do
 end
 
 -- Update terminal colors.
-for i in 0,15 do
+for i=0,15 do
   vim.g[string.format('terminal_color_%i', i)] = colors[string.format('TerminalColor%i', i)].fg
 end
