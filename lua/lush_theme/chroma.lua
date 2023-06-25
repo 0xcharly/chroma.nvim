@@ -106,7 +106,17 @@ local Pantone = {
   },
 }
 
-local Borrow = {
+local MrSuit = {
+  overlay = hsl '#22272e'.darken(2),
+  surface = hsl '#0d1116'.lighten(4),
+
+  text_green_subtle = hsl '#9bc397',
+  text_green = hsl '#a6e3a1'.darken(5).desaturate(50),
+  text_peach = hsl '#f2cdcd',
+  text_lavender = hsl '#b4befe',
+}
+
+local CatppuccinMocha = {
   rosewater = hsl '#f5e0dc',
   flamingo = hsl '#f2cdcd',
   pink = hsl '#f5c2e7',
@@ -136,13 +146,14 @@ local Borrow = {
 }
 
 local T = {
-  shadow = Pantone.ExtendedGamutCoated.Black6.darken(10),
-  surface0 = Pantone.ExtendedGamutCoated.Black6.darken(5),
-  surface1 = Pantone.ExtendedGamutCoated.Black6,
-  surface2 = Pantone.ExtendedGamutCoated.Black6.lighten(5),
+  shadow = MrSuit.surface.darken(10),
+  surface0 = MrSuit.surface,
+  surface1 = MrSuit.surface.lighten(2),
+  surface2 = MrSuit.surface.lighten(5),
+  cursorline = MrSuit.surface.lighten(7),
 
-  overlay0 = Pantone.ColorBridgeCoated.c532,
-  overlay1 = Pantone.ColorBridgeCoated.c4280,
+  overlay0 = MrSuit.overlay,
+  overlay1 = MrSuit.overlay.lighten(2),
 
   scrollbar = Pantone.ColorBridgeCoated.c532,
   scrollbarThumb = Pantone.ExtendedGamutCoated.c7544,
@@ -158,7 +169,7 @@ local T = {
   conceal = Pantone.ExtendedGamutCoated.c7545,
 
   greenSubtle = Pantone.FormulaGuideCoated.c6176,
-  green = Pantone.ColorBridgeUncoated.c6169,
+  green = MrSuit.text_green,
   greenEmphasis = Pantone.ExtendedGamutCoated.c2255,
 
   cyan = Pantone.ExtendedGamutCoated.c324,
@@ -167,10 +178,10 @@ local T = {
   blueSubtle = Pantone.ColorBridgeUncoated.c659,
   blue = Pantone.ColorBridgeUncoated.c2142,
 
-  purple = Pantone.PastelsNeonsCoated.c942,
+  purple = MrSuit.text_lavender,
   purpleEmphasis = Pantone.PastelsNeonsCoated.c935,
 
-  peach = Pantone.ColorBridgeUncoated.c495,
+  peach = MrSuit.text_peach,
   -- peachEmphasis
 
   pink = Pantone.ColorBridgeUncoated.c672,
@@ -189,26 +200,29 @@ local T = {
 }
 
 local Mix = {
-  visual = Pantone.FormulaGuideCoated.c2727.mix(T.surface0, 60),
-  cursorline = Pantone.FormulaGuideCoated.c2727.mix(T.surface0, 88),
+  grey = hsl '#313239',
+  on_grey = hsl '#bfc0c9'.lighten(25),
 
-  green = Pantone.FormulaGuideCoated.c2285.mix(T.surface0, 88),
-  onGreen = Pantone.FormulaGuideCoated.c2285.desaturate(15).lighten(25),
+  red = hsl '#41262e',
+  on_red = hsl '#fe7f8c'.lighten(25),
 
-  cyan = Pantone.FormulaGuideCoated.c2226.mix(T.surface0, 80),
-  onCyan = Pantone.FormulaGuideCoated.c2226.desaturate(15).lighten(50),
+  orange = hsl '#433027',
+  on_orange = hsl '#feae75'.lighten(25),
 
-  blue = Pantone.FormulaGuideCoated.c2727.mix(T.surface0, 80),
-  onBlue = Pantone.FormulaGuideCoated.c2727.desaturate(15).lighten(50),
+  yellow = hsl '#343637',
+  on_yellow = hsl '#f9e1ae',
 
-  purple = Pantone.FormulaGuideCoated.c7442.mix(T.surface0, 80),
-  onPurple = Pantone.FormulaGuideCoated.c7442.desaturate(40).lighten(50),
+  green = hsl '#243c2e',
+  on_green = hsl '#94efaa'.lighten(25),
 
-  yellow = Pantone.FormulaGuideCoated.c2011.mix(T.surface0, 88),
-  onYellow = Pantone.FormulaGuideCoated.c2011.saturate(50).lighten(45),
+  cyan = hsl '#233a48',
+  on_cyan = hsl '#89dceb',
 
-  red = Pantone.FormulaGuideCoated.c3556.mix(T.surface0, 80),
-  onRed = Pantone.FormulaGuideCoated.c3556.saturate(50).lighten(45),
+  blue = hsl '#203147',
+  on_blue = hsl '#83befe'.lighten(25),
+
+  purple = hsl '#312b41',
+  on_purple = hsl '#b799f0'.lighten(25),
 }
 
 -- Terminal colors.
@@ -260,60 +274,60 @@ local theme = lush(function(injected_functions)
     FloatBorder { Border },
     FloatShadow { bg = T.shadow },
     FloatShadowThrough { bg = T.shadow },
-    NonText { fg = T.conceal },                        -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal { fg = T.text0, bg = T.surface0 },          -- Normal text
-    NormalFloat { Normal },                            -- Normal text in floating windows.
-    NormalNC { Normal },                               -- normal text in non-current windows
-    NormalSB { Normal },                               -- normal text in non-current windows
-    lCursor { Cursor },                                -- Character under the cursor when |language-mapping| is used (see 'guicursor')
-    CursorIM { Cursor },                               -- Like Cursor, but used when in IME mode |CursorIM|
-    CursorLine { bg = Mix.cursorline },                -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    CursorColumn { CursorLine },                       -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    ColorColumn { CursorLine },                        -- Columns set with 'colorcolumn'
-    File { fg = T.text0 },                             -- Directory names (and other special names in listings)
-    Directory { fg = T.blue },                         -- Directory names (and other special names in listings)
-    DiffAdd { fg = Mix.onGreen, bg = Mix.green },      -- Diff mode: Added line |diff.txt|
-    DiffChange { fg = Mix.onPurple, bg = Mix.purple }, -- Diff mode: Changed line |diff.txt|
-    DiffDelete { fg = Mix.onRed, bg = Mix.red },       -- Diff mode: Deleted line |diff.txt|
-    DiffText { fg = T.text1 },                         -- Diff mode: Changed text within a changed line |diff.txt|
-    EndOfBuffer { NonText },                           -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+    NonText { fg = T.conceal },                         -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    Normal { fg = T.text0, bg = T.surface0 },           -- Normal text
+    NormalFloat { Normal },                             -- Normal text in floating windows.
+    NormalNC { Normal },                                -- normal text in non-current windows
+    NormalSB { Normal },                                -- normal text in non-current windows
+    lCursor { Cursor },                                 -- Character under the cursor when |language-mapping| is used (see 'guicursor')
+    CursorIM { Cursor },                                -- Like Cursor, but used when in IME mode |CursorIM|
+    CursorLine { bg = MrSuit.cursorline },              -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorColumn { CursorLine },                        -- Screen-column at the cursor, when 'cursorcolumn' is set.
+    ColorColumn { CursorLine },                         -- Columns set with 'colorcolumn'
+    File { fg = T.text0 },                              -- Directory names (and other special names in listings)
+    Directory { fg = T.blue },                          -- Directory names (and other special names in listings)
+    DiffAdd { fg = Mix.on_green, bg = Mix.green },      -- Diff mode: Added line |diff.txt|
+    DiffChange { fg = Mix.on_purple, bg = Mix.purple }, -- Diff mode: Changed line |diff.txt|
+    DiffDelete { fg = Mix.on_red, bg = Mix.red },       -- Diff mode: Deleted line |diff.txt|
+    DiffText { fg = T.text1 },                          -- Diff mode: Changed text within a changed line |diff.txt|
+    EndOfBuffer { NonText },                            -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
-    VertSplit { Border },                                            -- Column separating vertically split windows
-    Folded { fg = T.subtext1, gui = 'italic' },                      -- Line used for closed folds
-    FoldColumn { bg = T.surface0 },                                  -- 'foldcolumn'
-    SignColumn { bg = T.surface0 },                                  -- Column where |signs| are displayed
-    SignColumnSB { SignColumn },                                     -- Column where |signs| are displayed
-    Search { fg = Mix.onYellow, bg = Mix.yellow, gui = 'bold' },     -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-    IncSearch { Search },                                            -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    Substitute { fg = Mix.onPurple, bg = Mix.purple, gui = 'bold' }, -- |:substitute| replacement text highlighting
-    LineNr { fg = T.conceal },                                       -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    CursorLineNr { fg = T.subtext0 },                                -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    MatchParen { fg = T.title },                                     -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    ModeMsg { fg = T.text0, gui = 'bold' },                          -- 'showmode' message (e.g., "-- INSERT -- ")
-    MsgArea { fg = T.text0 },                                        -- Area for messages and cmdline
+    VertSplit { Border },                                             -- Column separating vertically split windows
+    Folded { fg = T.subtext1, gui = 'italic' },                       -- Line used for closed folds
+    FoldColumn { bg = T.surface0 },                                   -- 'foldcolumn'
+    SignColumn { bg = T.surface0 },                                   -- Column where |signs| are displayed
+    SignColumnSB { SignColumn },                                      -- Column where |signs| are displayed
+    Search { fg = Mix.on_yellow, bg = Mix.yellow, gui = 'bold' },     -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+    IncSearch { Search },                                             -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    Substitute { fg = Mix.on_purple, bg = Mix.purple, gui = 'bold' }, -- |:substitute| replacement text highlighting
+    LineNr { fg = T.conceal },                                        -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    CursorLineNr { fg = T.subtext0 },                                 -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    MatchParen { fg = T.title },                                      -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    ModeMsg { fg = T.text0, gui = 'bold' },                           -- 'showmode' message (e.g., "-- INSERT -- ")
+    MsgArea { fg = T.text0 },                                         -- Area for messages and cmdline
     -- MsgSeparat or { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
-    MoreMsg { fg = Mix.onCyan, bg = Mix.cyan },                      -- |more-prompt|
-    Pmenu { fg = T.text0, bg = T.overlay0 },                         -- Popup menu: Normal item.
-    PmenuSel { fg = Mix.onBlue, bg = Mix.blue },                     -- Popup menu: Selected item.
-    PmenuSbar { bg = T.scrollbar },                                  -- Popup menu: Scrollbar.
-    PmenuThumb { fg = T.scrollbarThumb },                            -- Popup menu: Thumb of the scrollbar.
-    Question { fg = T.greenEmphasis },                               -- |hit-enter| prompt and yes/no questions
-    QuickFixLine { bg = T.surface1, gui = 'bold' },                  -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    SpecialKey { fg = T.text1 },                                     -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-    StatusLine { fg = T.text0, bg = T.surface1 },                    -- Status line of current window
-    StatusLineNC { StatusLine, fg = T.text1 },                       -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    TabLine { Normal, fg = T.subtext0 },                             -- Tab pages line, not active tab page label
-    TabLineFill { Normal },                                          -- Tab pages line, where there are no labels
-    TabLineSel { PmenuSel },                                         -- Tab pages line, active tab page label
-    Title { fg = T.title, gui = 'bold' },                            -- Titles for output from ":set all", ":autocmd" etc.
-    Visual { bg = Mix.visual },                                      -- Visual mode selection
-    VisualNOS { Visual },                                            -- Visual mode selection when vim is "Not Owning the Selection".
-    Whitespace { NonText },                                          -- "nbsp", "space", "tab" and "trail" in 'listchars'
-    Winseparator { VertSplit },                                      -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
-    WildMenu { bg = T.overlay0 },                                    -- Current match in 'wildmenu' completion
+    MoreMsg { fg = Mix.on_cyan, bg = Mix.cyan },                      -- |more-prompt|
+    Pmenu { fg = T.text0, bg = T.overlay0 },                          -- Popup menu: Normal item.
+    PmenuSel { fg = Mix.on_blue, bg = Mix.blue },                     -- Popup menu: Selected item.
+    PmenuSbar { bg = T.scrollbar },                                   -- Popup menu: Scrollbar.
+    PmenuThumb { bg = T.scrollbarThumb },                             -- Popup menu: Thumb of the scrollbar.
+    Question { fg = T.greenEmphasis },                                -- |hit-enter| prompt and yes/no questions
+    QuickFixLine { bg = T.surface1, gui = 'bold' },                   -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+    SpecialKey { fg = T.text1 },                                      -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+    StatusLine { fg = T.text0, bg = T.surface1 },                     -- Status line of current window
+    StatusLineNC { StatusLine, fg = T.text1 },                        -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    TabLine { Normal, fg = T.subtext0 },                              -- Tab pages line, not active tab page label
+    TabLineFill { Normal },                                           -- Tab pages line, where there are no labels
+    TabLineSel { PmenuSel },                                          -- Tab pages line, active tab page label
+    Title { fg = T.title, gui = 'bold' },                             -- Titles for output from ":set all", ":autocmd" etc.
+    Visual { fg = Mix.on_blue, bg = Mix.blue },                       -- Visual mode selection
+    VisualNOS { Visual },                                             -- Visual mode selection when vim is "Not Owning the Selection".
+    Whitespace { NonText },                                           -- "nbsp", "space", "tab" and "trail" in 'listchars'
+    Winseparator { VertSplit },                                       -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
+    WildMenu { bg = T.overlay0 },                                     -- Current match in 'wildmenu' completion
 
-    Todo { fg = Mix.onBlue, bg = Mix.blue, gui = 'italic' },         -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    Todo { fg = Mix.on_blue, bg = Mix.blue, gui = 'italic' },         -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     Success { fg = T.green },
     Warning { fg = T.yellow },
     Error { fg = T.red },
@@ -364,36 +378,36 @@ local theme = lush(function(injected_functions)
     Float { fg = T.pink },               --   A floating point constant: 2.3e10
     URI { fg = T.cyan, gui = 'underline' },
 
-    Identifier { fg = T.text0 },            -- (*) Any variable name
-    Function { fg = T.blue },               --   Function name (also: methods for classes)
+    Identifier { fg = T.text0 },                   -- (*) Any variable name
+    Function { fg = T.blue },                      --   Function name (also: methods for classes)
 
-    Statement { fg = T.purple },            -- (*) Any statement
-    Conditional { Statement },              --   if, then, else, endif, switch, etc.
-    Repeat { Statement },                   --   for, do, while, etc.
-    Label { Statement },                    --   case, default, etc.
-    Operator { Punctuation },               --   "sizeof", "+", "*", etc.
-    Keyword { fg = T.purple },              --   any other keyword
-    Exception { Keyword },                  --   try, catch, throw
+    Statement { fg = T.purple },                   -- (*) Any statement
+    Conditional { Statement },                     --   if, then, else, endif, switch, etc.
+    Repeat { Statement },                          --   for, do, while, etc.
+    Label { Statement },                           --   case, default, etc.
+    Operator { Punctuation },                      --   "sizeof", "+", "*", etc.
+    Keyword { fg = T.purple },                     --   any other keyword
+    Exception { Keyword },                         --   try, catch, throw
 
-    PreProc { fg = T.peach },               -- (*) Generic Preprocessor
-    Include { fg = T.cyan },                --   Preprocessor #include
-    Define { Include },                     --   Preprocessor #define
-    Macro { Include },                      --   Same as Define
-    PreCondit { PreProc },                  --   Preprocessor #if, #else, #endif, etc.
+    PreProc { fg = T.peach },                      -- (*) Generic Preprocessor
+    Include { fg = T.cyan },                       --   Preprocessor #include
+    Define { Include },                            --   Preprocessor #define
+    Macro { Include },                             --   Same as Define
+    PreCondit { PreProc },                         --   Preprocessor #if, #else, #endif, etc.
 
-    Type { fg = T.greenSubtle },            -- (*) int, long, char, etc.
-    StorageClass { Keyword },               --   static, register, volatile, etc.
-    Structure { Type },                     --   struct, union, enum, etc.
-    Typedef { Type },                       --   A typedef
+    Type { fg = T.greenSubtle },                   -- (*) int, long, char, etc.
+    StorageClass { Keyword },                      --   static, register, volatile, etc.
+    Structure { Type },                            --   struct, union, enum, etc.
+    Typedef { Type },                              --   A typedef
 
-    Special { fg = T.redEmphasis },         -- (*) Any special symbol
-    SpecialChar { fg = T.peach },           --   Special character in a constant
-    Tag { Special },                        --   You can use CTRL-] on this
-    Delimiter { Punctuation },              --   Character that needs attention
-    SpecialComment { fg = T.pink },         --   Special things inside a comment (e.g. '\n')
-    Debug { fg = Mix.onRed, bg = Mix.red }, --   Debugging statements
+    Special { fg = T.redEmphasis },                -- (*) Any special symbol
+    SpecialChar { fg = T.peach },                  --   Special character in a constant
+    Tag { Special },                               --   You can use CTRL-] on this
+    Delimiter { Punctuation },                     --   Character that needs attention
+    SpecialComment { fg = T.pink },                --   Special things inside a comment (e.g. '\n')
+    Debug { fg = Mix.on_orange, bg = Mix.orange }, --   Debugging statements
 
-    Underlined { gui = 'underline' },       -- Text that stands out, HTML links
+    Underlined { gui = 'underline' },              -- Text that stands out, HTML links
     Bold { gui = 'bold' },
     Italic { gui = 'italic' },
     -- ("Ignore", below, may be invisible...)
@@ -425,10 +439,10 @@ local theme = lush(function(injected_functions)
 
     -- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
     --
-    LspReferenceText { fg = Mix.onBlue, bg = Mix.blue }, -- Used for highlighting "text" references
-    LspReferenceRead { LspReferenceText },               -- Used for highlighting "read" references
-    LspReferenceWrite { LspReferenceText },              -- Used for highlighting "write" references
-    LspCodeLens { fg = T.subtext1, gui = 'italic' },     -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
+    LspReferenceText { fg = Mix.on_blue, bg = Mix.blue }, -- Used for highlighting "text" references
+    LspReferenceRead { LspReferenceText },                -- Used for highlighting "read" references
+    LspReferenceWrite { LspReferenceText },               -- Used for highlighting "write" references
+    LspCodeLens { fg = T.subtext1, gui = 'italic' },      -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
     -- LspCodeLensSeparator        { }, -- Used to color the seperator between two or more code lens.
     -- LspSignatureActiveParameter { }, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
     LspParameter { fg = T.peach, gui = 'italic' }, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
@@ -439,10 +453,10 @@ local theme = lush(function(injected_functions)
     DiagnosticWarn { Warning },                                                -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
     DiagnosticInfo { fg = T.cyan },                                            -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
     DiagnosticHint { fg = T.subtext0 },                                        -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticVirtualTextError { fg = Mix.onRed, bg = Mix.red },               -- Used for "Error" diagnostic virtual text.
-    DiagnosticVirtualTextWarn { fg = Mix.onYellow, bg = Mix.yellow },          -- Used for "Warn" diagnostic virtual text.
-    DiagnosticVirtualTextInfo { fg = Mix.onCyan, bg = Mix.cyan },              -- Used for "Info" diagnostic virtual text.
-    DiagnosticVirtualTextHint { fg = T.subtext0, bg = T.surface1 },            -- Used for "Hint" diagnostic virtual text.
+    DiagnosticVirtualTextError { fg = Mix.on_red, bg = Mix.red },              -- Used for "Error" diagnostic virtual text.
+    DiagnosticVirtualTextWarn { fg = Mix.on_yellow, bg = Mix.yellow },         -- Used for "Warn" diagnostic virtual text.
+    DiagnosticVirtualTextInfo { fg = Mix.on_cyan, bg = Mix.cyan },             -- Used for "Info" diagnostic virtual text.
+    DiagnosticVirtualTextHint { fg = Mix.subtext0, bg = T.surface1 },          -- Used for "Hint" diagnostic virtual text.
     DiagnosticUnderlineError { gui = 'underdotted', sp = DiagnosticError.fg }, -- Used to underline "Error" diagnostics.
     DiagnosticUnderlineWarn { gui = 'underdotted', sp = DiagnosticWarn.fg },   -- Used to underline "Warn" diagnostics.
     DiagnosticUnderlineInfo { gui = 'underdotted', sp = DiagnosticInfo.fg },   -- Used to underline "Info" diagnostics.
@@ -590,6 +604,9 @@ local theme = lush(function(injected_functions)
     sym '@lsp.mod.definition.c' {},
     sym '@lsp.mod.globalScope.c' {},
 
+    sym '@lsp.type.interface.rust' { Constant },
+    sym '@punctuation.special.rust' { Punctuation },
+
     -- Quickfix window.
     qfFileName { Directory },
     qfSeparator { Delimiter },
@@ -653,6 +670,7 @@ local theme = lush(function(injected_functions)
     FzfLuaNormal { Normal, bg = T.surface0 },
     FzfLuaBorder { fg = T.overlay0, bg = T.overlay0 },
     FzfLuaTitle { fg = T.surface0, bg = T.blue, gui = 'bold' },
+    FzfLuaScrollFloatEmpty { bg = T.surface0 },
     -- fzf-lua only passes down the .fg attribute.
     FzfLuaColorsFg { fg = T.text0 },
     FzfLuaColorsFgSel { FzfLuaColorsFg },
@@ -703,11 +721,11 @@ local theme = lush(function(injected_functions)
     CmpItemKindTypeParameter { sym '@parameter' },
     CmpItemKindCopilot { fg = T.peach },
 
-    LualineANormal { fg = Mix.onBlue, bg = Mix.blue },
-    LualineAInsert { fg = Mix.onGreen, bg = Mix.green },
-    LualineAVisual { fg = Mix.onCyan, bg = Mix.cyan },
-    LualineAReplace { fg = Mix.onRed, bg = Mix.red },
-    LualineACommand { fg = Mix.onPurple, bg = Mix.purple },
+    LualineANormal { fg = Mix.on_blue, bg = Mix.blue },
+    LualineAInsert { fg = Mix.on_green, bg = Mix.green },
+    LualineAVisual { fg = Mix.on_cyan, bg = Mix.cyan },
+    LualineAReplace { fg = Mix.on_red, bg = Mix.red },
+    LualineACommand { fg = Mix.on_purple, bg = Mix.purple },
     LualineAInactive { fg = T.text1, bg = T.surface2 },
 
     LualineBNormal { fg = T.text1, bg = T.surface1 },
