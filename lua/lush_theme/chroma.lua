@@ -11,111 +11,6 @@
 local lush = require 'lush'
 local hsl = lush.hsl
 
-local Pantone = {
-  ExtendedGamutCoated = {
-    c169 = hsl '#f4b7af',
-    c190 = hsl '#e37796',
-    c244 = hsl '#cc9cc4',
-    c324 = hsl '#91d7d1',
-    c358 = hsl '#a8d98d',
-    c419 = hsl '#252724',
-    c432 = hsl '#39454d',
-    c433 = hsl '#1d262e',
-    c472 = hsl '#e6a46e',
-    c605 = hsl '#e6d400',
-    c644 = hsl '#a1bbd6',
-    c663 = hsl '#e8e7ea',
-    c727 = hsl '#d8b48e',
-    c2005 = hsl '#f8d57e',
-    c2142 = hsl '#8fb0db',
-    c2255 = hsl '#80d291',
-    c2345 = hsl '#f07f73',
-    c2346 = hsl '#e9666a',
-    c2915 = hsl '#6ab4e0',
-    c3242 = hsl '#6fd0c6',
-    c7507 = hsl '#f9d39c',
-    c7541 = hsl '#d9e0e3',
-    c7542 = hsl '#a3b9c3',
-    c7543 = hsl '#94a2ad',
-    c7544 = hsl '#758491',
-    c7545 = hsl '#415364',
-    Black6 = hsl '#131d28',
-  },
-
-  FormulaGuideCoated = {
-    c2011 = hsl '#ec9c33',
-    c2226 = hsl '#3ecbda',
-    c2285 = hsl '#93da49',
-    c2727 = hsl '#2f7ee2',
-    c3556 = hsl '#ee3831',
-    c7442 = hsl '#963cbd',
-
-    c6176 = hsl '#9ac0a5',
-  },
-
-  ColorBridgeCoated = {
-    c433 = hsl '#222f34',
-    c532 = hsl '#252934',
-    c2267 = hsl '#a2cd88',
-    c4280 = hsl '#2c333a',
-    c6001 = hsl '#e6ddaf',
-  },
-
-  ColorBridgeUncoated = {
-    c292 = hsl '#64a9d7',
-    c333 = hsl '#70bd9e',
-    c3548 = hsl '#dc6964',
-
-    c495 = hsl '#edacad',
-    c671 = hsl '#f0c4d2',
-    c672 = hsl '#edacc6',
-    c1775 = hsl '#e78584',
-
-    c6001 = hsl '#f3d58a',
-    c6169 = hsl '#88c093',
-
-    c659 = hsl '#97b6d9',
-    c2142 = hsl '#8bb5da',
-
-    c649 = hsl '#e6ebe7',
-    c650 = hsl '#d9e2e4',
-    c651 = hsl '#b2c4d3',
-    c652 = hsl '#8fa3bb',
-    c653 = hsl '#6f819e',
-    c654 = hsl '#5c6d87',
-
-    c4134 = hsl '#a0a6b1',
-    c4135 = hsl '#86909f',
-    c4136 = hsl '#7a8490',
-    c4137 = hsl '#697581',
-    c4138 = hsl '#6b7782',
-    c4139 = hsl '#6a717a',
-    c4140 = hsl '#626368',
-
-    c2267 = hsl '#afd396',
-    c2268 = hsl '#97c87e',
-  },
-
-  PastelsNeonsUncoated = {
-    c0131 = hsl '#fbf59b',
-  },
-
-  PastelsNeonsCoated = {
-    c935 = hsl '#ab92e1',
-    c942 = hsl '#c0aee7',
-  },
-}
-
-local MrSuit = {
-  overlay = hsl '#22272e'.darken(2),
-  surface = hsl '#0d1116'.lighten(4),
-
-  text_green_subtle = hsl '#9bc397',
-  text_green = hsl '#a6e3a1'.darken(5).desaturate(50),
-  text_peach = hsl '#f2cdcd',
-  text_lavender = hsl '#b4befe',
-}
-
 local CatppuccinMocha = {
   rosewater = hsl '#f5e0dc',
   flamingo = hsl '#f2cdcd',
@@ -145,107 +40,88 @@ local CatppuccinMocha = {
   crust = hsl '#11111b',
 }
 
-local T = {
-  shadow = MrSuit.surface.darken(10),
-  surface0 = MrSuit.surface,
-  surface1 = MrSuit.surface.lighten(2),
-  surface2 = MrSuit.surface.lighten(5),
-  cursorline = MrSuit.surface.lighten(7),
+local MrSuit = {
+  overlay0 = hsl '#23282f',
+  overlay1 = hsl '#23282f'.lighten(2),
 
-  overlay0 = MrSuit.overlay,
-  overlay1 = MrSuit.overlay.lighten(2),
+  shadow = hsl '#151b23'.darken(10),
+  surface0 = hsl '#151b23',
+  surface1 = hsl '#151b23'.lighten(2),
+  surface2 = hsl '#151b23'.lighten(5),
 
-  scrollbar = Pantone.ColorBridgeCoated.c532,
-  scrollbarThumb = Pantone.ExtendedGamutCoated.c7544,
+  cursorline = hsl '#151b23'.lighten(7),
+  scrollbarThumb = hsl '#bfc0c9'.darken(10),
+  border = hsl '#313244',
+  conceal = hsl '#45475a',
 
-  title = Pantone.ExtendedGamutCoated.c663,
-  text0 = Pantone.ColorBridgeUncoated.c651,
-  text1 = Pantone.ColorBridgeUncoated.c652,
+  title = hsl '#d9e2e4',
+  text0 = hsl '#b2c4d3',
+  text1 = hsl '#8fa3bb',
+  subtext0 = hsl '#86909f',
+  subtext1 = hsl '#7a8490',
 
-  subtext0 = Pantone.ColorBridgeUncoated.c4135,
-  subtext1 = Pantone.ColorBridgeUncoated.c4136,
+  text_peach = hsl '#f2cdcd',
+  text_pink = hsl '#f5c2e7',
+  text_purple = hsl '#cba6f7'.lighten(10),
+  text_red = hsl '#fe7f8c'.lighten(20),
+  text_red_bright = hsl '#fe7f8c',
+  text_orange = hsl '#d8b48e',
+  text_orange_bright = hsl '#fab387',
+  text_yellow = hsl '#e6ddaf',
+  text_green = hsl '#a6e3a1'.darken(5).desaturate(50),
+  text_green_bright = hsl '#80d291'.desaturate(10).lighten(10),
+  text_cyan = hsl '#91d7d1',
+  text_cyan_bright = hsl '#6fd0c6',
+  text_blue = hsl '#8bb5da',
+  text_blue_bright = hsl '#89b4fa',
+  text_lavender = hsl '#b4befe',
 
-  border = Pantone.ExtendedGamutCoated.c432,
-  conceal = Pantone.ExtendedGamutCoated.c7545,
+  surface_grey = hsl '#313239',
+  on_surface_grey = hsl '#bfc0c9'.lighten(25),
 
-  greenSubtle = Pantone.FormulaGuideCoated.c6176,
-  green = MrSuit.text_green,
-  greenEmphasis = Pantone.ExtendedGamutCoated.c2255,
+  surface_red = hsl '#41262e',
+  on_surface_red = hsl '#fe7f8c'.lighten(25),
 
-  cyan = Pantone.ExtendedGamutCoated.c324,
-  cyanEmphasis = Pantone.ExtendedGamutCoated.c3242,
+  surface_orange = hsl '#433027',
+  on_surface_orange = hsl '#feae75'.lighten(25),
 
-  blueSubtle = Pantone.ColorBridgeUncoated.c659,
-  blue = Pantone.ColorBridgeUncoated.c2142,
+  surface_yellow = hsl '#343637',
+  on_surface_yellow = hsl '#f9e1ae',
 
-  purple = MrSuit.text_lavender,
-  purpleEmphasis = Pantone.PastelsNeonsCoated.c935,
+  surface_green = hsl '#243c2e',
+  on_surface_green = hsl '#94efaa'.lighten(25),
 
-  peach = MrSuit.text_peach,
-  -- peachEmphasis
+  surface_cyan = hsl '#233a48',
+  on_surface_cyan = hsl '#89dceb',
 
-  pink = Pantone.ColorBridgeUncoated.c672,
-  pinkEmphasis = Pantone.ExtendedGamutCoated.c244,
+  surface_blue = hsl '#203147',
+  on_surface_blue = hsl '#83befe'.lighten(25),
 
-  -- redSubtle
-  red = Pantone.ColorBridgeUncoated.c1775,
-  redEmphasis = Pantone.ExtendedGamutCoated.c2345,
-
-  orange = Pantone.ExtendedGamutCoated.c727,
-  orangeEmphasis = Pantone.ExtendedGamutCoated.c472,
-
-  yellowSubtle = Pantone.ColorBridgeCoated.c6001,
-  yellow = Pantone.ColorBridgeUncoated.c6001,
-  yellowEmphasis = Pantone.PastelsNeonsUncoated.c0131,
-}
-
-local Mix = {
-  grey = hsl '#313239',
-  on_grey = hsl '#bfc0c9'.lighten(25),
-
-  red = hsl '#41262e',
-  on_red = hsl '#fe7f8c'.lighten(25),
-
-  orange = hsl '#433027',
-  on_orange = hsl '#feae75'.lighten(25),
-
-  yellow = hsl '#343637',
-  on_yellow = hsl '#f9e1ae',
-
-  green = hsl '#243c2e',
-  on_green = hsl '#94efaa'.lighten(25),
-
-  cyan = hsl '#233a48',
-  on_cyan = hsl '#89dceb',
-
-  blue = hsl '#203147',
-  on_blue = hsl '#83befe'.lighten(25),
-
-  purple = hsl '#312b41',
-  on_purple = hsl '#b799f0'.lighten(25),
+  surface_purple = hsl '#312b41',
+  on_surface_purple = hsl '#b799f0'.lighten(25),
 }
 
 -- Terminal colors.
 -- TODO: move this somewhere more appropriate (this is probably going to be
 -- dropped during :Shipwright compilation).
 local Term = {
-  T.surface0, -- Black
-  T.red,
-  T.green,
-  T.yellow,
-  T.blue,
-  T.purple,
-  T.cyan,
-  T.text0,
+  MrSuit.subtext0, -- Black
+  MrSuit.text_red,
+  MrSuit.text_green,
+  MrSuit.text_yellow,
+  MrSuit.text_blue,
+  MrSuit.text_lavender,
+  MrSuit.text_cyan,
+  MrSuit.text0,
 
-  T.subtext1, -- Bright black
-  T.redEmphasis,
-  T.greenSubtle,
-  T.yellowSubtle,
-  T.blueSubtle,
-  T.purpleEmphasis,
-  T.cyanEmphasis,
-  T.text1,
+  MrSuit.subtext1, -- Bright black
+  MrSuit.text_red_bright,
+  MrSuit.text_green_bright,
+  MrSuit.text_orange_bright,
+  MrSuit.text_blue_bright,
+  MrSuit.text_purple,
+  MrSuit.text_cyan_bright,
+  MrSuit.text1,
 }
 
 for k, v in pairs(Term) do
@@ -268,69 +144,69 @@ local theme = lush(function(injected_functions)
     --
     -- See :h highlight-groups
     --
-    Conceal { fg = T.conceal }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-    Cursor { fg = T.text1 },    -- Character under the cursor
-    Border { fg = T.border },
+    Conceal { fg = MrSuit.conceal }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
+    Cursor { fg = MrSuit.text1 },    -- Character under the cursor
+    Border { fg = MrSuit.border },
     FloatBorder { Border },
-    FloatShadow { bg = T.shadow },
-    FloatShadowThrough { bg = T.shadow },
-    NonText { fg = T.conceal },                         -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
-    Normal { fg = T.text0, bg = T.surface0 },           -- Normal text
-    NormalFloat { Normal },                             -- Normal text in floating windows.
-    NormalNC { Normal },                                -- normal text in non-current windows
-    NormalSB { Normal },                                -- normal text in non-current windows
-    lCursor { Cursor },                                 -- Character under the cursor when |language-mapping| is used (see 'guicursor')
-    CursorIM { Cursor },                                -- Like Cursor, but used when in IME mode |CursorIM|
-    CursorLine { bg = MrSuit.cursorline },              -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    CursorColumn { CursorLine },                        -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    ColorColumn { CursorLine },                         -- Columns set with 'colorcolumn'
-    File { fg = T.text0 },                              -- Directory names (and other special names in listings)
-    Directory { fg = T.blue },                          -- Directory names (and other special names in listings)
-    DiffAdd { fg = Mix.on_green, bg = Mix.green },      -- Diff mode: Added line |diff.txt|
-    DiffChange { fg = Mix.on_purple, bg = Mix.purple }, -- Diff mode: Changed line |diff.txt|
-    DiffDelete { fg = Mix.on_red, bg = Mix.red },       -- Diff mode: Deleted line |diff.txt|
-    DiffText { fg = T.text1 },                          -- Diff mode: Changed text within a changed line |diff.txt|
-    EndOfBuffer { NonText },                            -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+    FloatShadow { bg = MrSuit.shadow },
+    FloatShadowThrough { bg = MrSuit.shadow },
+    NonText { Conceal },                                                      -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    Normal { fg = MrSuit.text0, bg = MrSuit.surface0 },                       -- Normal text
+    NormalFloat { Normal },                                                   -- Normal text in floating windows.
+    NormalNC { Normal },                                                      -- normal text in non-current windows
+    NormalSB { Normal },                                                      -- normal text in non-current windows
+    lCursor { Cursor },                                                       -- Character under the cursor when |language-mapping| is used (see 'guicursor')
+    CursorIM { Cursor },                                                      -- Like Cursor, but used when in IME mode |CursorIM|
+    CursorLine { bg = MrSuit.cursorline },                                    -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorColumn { CursorLine },                                              -- Screen-column at the cursor, when 'cursorcolumn' is set.
+    ColorColumn { CursorLine },                                               -- Columns set with 'colorcolumn'
+    File { fg = MrSuit.text0 },                                               -- Directory names (and other special names in listings)
+    Directory { fg = MrSuit.text_blue },                                      -- Directory names (and other special names in listings)
+    DiffAdd { fg = MrSuit.on_surface_green, bg = MrSuit.surface_green },      -- Diff mode: Added line |diff.txt|
+    DiffChange { fg = MrSuit.on_surface_purple, bg = MrSuit.surface_purple }, -- Diff mode: Changed line |diff.txt|
+    DiffDelete { fg = MrSuit.on_surface_red, bg = MrSuit.surface_red },       -- Diff mode: Deleted line |diff.txt|
+    DiffText { fg = MrSuit.text1 },                                           -- Diff mode: Changed text within a changed line |diff.txt|
+    EndOfBuffer { NonText },                                                  -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     -- TermCursor   { }, -- Cursor in a focused terminal
     -- TermCursorNC { }, -- Cursor in an unfocused terminal
-    VertSplit { Border },                                             -- Column separating vertically split windows
-    Folded { fg = T.subtext1, gui = 'italic' },                       -- Line used for closed folds
-    FoldColumn { bg = T.surface0 },                                   -- 'foldcolumn'
-    SignColumn { bg = T.surface0 },                                   -- Column where |signs| are displayed
-    SignColumnSB { SignColumn },                                      -- Column where |signs| are displayed
-    Search { fg = Mix.on_yellow, bg = Mix.yellow, gui = 'bold' },     -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-    IncSearch { Search },                                             -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-    Substitute { fg = Mix.on_purple, bg = Mix.purple, gui = 'bold' }, -- |:substitute| replacement text highlighting
-    LineNr { fg = T.conceal },                                        -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-    CursorLineNr { fg = T.subtext0 },                                 -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    MatchParen { fg = T.title },                                      -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    ModeMsg { fg = T.text0, gui = 'bold' },                           -- 'showmode' message (e.g., "-- INSERT -- ")
-    MsgArea { fg = T.text0 },                                         -- Area for messages and cmdline
+    VertSplit { Border },                                                               -- Column separating vertically split windows
+    Folded { fg = MrSuit.subtext1, gui = 'italic' },                                    -- Line used for closed folds
+    FoldColumn { bg = MrSuit.surface0 },                                                -- 'foldcolumn'
+    SignColumn { bg = MrSuit.surface0 },                                                -- Column where |signs| are displayed
+    SignColumnSB { SignColumn },                                                        -- Column where |signs| are displayed
+    Search { fg = MrSuit.on_surface_yellow, bg = MrSuit.surface_yellow, gui = 'bold' }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+    IncSearch { Search },                                                               -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+    Substitute { fg = MrSuit.on_surface_cyan, bg = MrSuit.surface_cyan, gui = 'bold' }, -- |:substitute| replacement text highlighting
+    LineNr { Conceal },                                                                 -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+    CursorLineNr { fg = MrSuit.subtext0 },                                              -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    MatchParen { fg = MrSuit.title },                                                   -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    ModeMsg { fg = MrSuit.text0, gui = 'bold' },                                        -- 'showmode' message (e.g., "-- INSERT -- ")
+    MsgArea { fg = MrSuit.text0 },                                                      -- Area for messages and cmdline
     -- MsgSeparat or { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
-    MoreMsg { fg = Mix.on_cyan, bg = Mix.cyan },                      -- |more-prompt|
-    Pmenu { fg = T.text0, bg = T.overlay0 },                          -- Popup menu: Normal item.
-    PmenuSel { fg = Mix.on_blue, bg = Mix.blue },                     -- Popup menu: Selected item.
-    PmenuSbar { bg = T.scrollbar },                                   -- Popup menu: Scrollbar.
-    PmenuThumb { bg = T.scrollbarThumb },                             -- Popup menu: Thumb of the scrollbar.
-    Question { fg = T.greenEmphasis },                                -- |hit-enter| prompt and yes/no questions
-    QuickFixLine { bg = T.surface1, gui = 'bold' },                   -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
-    SpecialKey { fg = T.text1 },                                      -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
-    StatusLine { fg = T.text0, bg = T.surface1 },                     -- Status line of current window
-    StatusLineNC { StatusLine, fg = T.text1 },                        -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    TabLine { Normal, fg = T.subtext0 },                              -- Tab pages line, not active tab page label
-    TabLineFill { Normal },                                           -- Tab pages line, where there are no labels
-    TabLineSel { PmenuSel },                                          -- Tab pages line, active tab page label
-    Title { fg = T.title, gui = 'bold' },                             -- Titles for output from ":set all", ":autocmd" etc.
-    Visual { fg = Mix.on_blue, bg = Mix.blue },                       -- Visual mode selection
-    VisualNOS { Visual },                                             -- Visual mode selection when vim is "Not Owning the Selection".
-    Whitespace { NonText },                                           -- "nbsp", "space", "tab" and "trail" in 'listchars'
-    Winseparator { VertSplit },                                       -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
-    WildMenu { bg = T.overlay0 },                                     -- Current match in 'wildmenu' completion
+    MoreMsg { fg = MrSuit.on_surface_cyan, bg = MrSuit.surface_cyan },                  -- |more-prompt|
+    Pmenu { fg = MrSuit.text0, bg = MrSuit.overlay0 },                                  -- Popup menu: Normal item.
+    PmenuSel { fg = MrSuit.on_surface_blue, bg = MrSuit.surface_blue },                 -- Popup menu: Selected item.
+    PmenuSbar { bg = MrSuit.surface_grey },                                             -- Popup menu: Scrollbar.
+    PmenuThumb { bg = MrSuit.scrollbarThumb },                                          -- Popup menu: Thumb of the scrollbar.
+    Question { fg = MrSuit.text_green_bright },                                         -- |hit-enter| prompt and yes/no questions
+    QuickFixLine { bg = MrSuit.surface1, gui = 'bold' },                                -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+    SpecialKey { fg = MrSuit.text1 },                                                   -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+    StatusLine { fg = MrSuit.text0, bg = MrSuit.surface2 },                             -- Status line of current window
+    StatusLineNC { StatusLine, fg = MrSuit.text1 },                                     -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+    TabLine { Normal, fg = MrSuit.subtext0 },                                           -- Tab pages line, not active tab page label
+    TabLineFill { Normal },                                                             -- Tab pages line, where there are no labels
+    TabLineSel { PmenuSel },                                                            -- Tab pages line, active tab page label
+    Title { fg = MrSuit.title, gui = 'bold' },                                          -- Titles for output from ":set all", ":autocmd" etc.
+    Visual { fg = MrSuit.on_surface_blue, bg = MrSuit.surface_blue },                   -- Visual mode selection
+    VisualNOS { Visual },                                                               -- Visual mode selection when vim is "Not Owning the Selection".
+    Whitespace { NonText },                                                             -- "nbsp", "space", "tab" and "trail" in 'listchars'
+    Winseparator { VertSplit },                                                         -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
+    WildMenu { bg = MrSuit.overlay0 },                                                  -- Current match in 'wildmenu' completion
 
-    Todo { fg = Mix.on_blue, bg = Mix.blue, gui = 'italic' },         -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-    Success { fg = T.green },
-    Warning { fg = T.yellow },
-    Error { fg = T.red },
+    Todo { fg = MrSuit.on_surface_blue, bg = MrSuit.surface_blue, gui = 'italic' },     -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+    Success { fg = MrSuit.text_green },
+    Warning { fg = MrSuit.text_yellow },
+    Error { fg = MrSuit.text_red },
 
     -- Healthcheck.
     healthSuccess { Success },
@@ -366,48 +242,47 @@ local theme = lush(function(injected_functions)
     --
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    FuzzyMatch { fg = T.orange },
-    Punctuation { fg = T.text1 },
-    Comment { fg = T.subtext1 },         -- Any comment
+    FuzzyMatch { fg = MrSuit.text_orange },
+    Punctuation { fg = MrSuit.text1 },
+    Comment { fg = MrSuit.subtext1 },                                    -- Any comment
 
-    Constant { fg = T.orange },          -- (*) Any constant
-    String { fg = T.green },             --   A string constant: "this is a string"
-    Character { fg = T.orangeEmphasis }, --   A character constant: 'c', '\n'
-    Number { fg = T.blue },              --   A number constant: 234, 0xff
-    Boolean { fg = T.pink },             --   A boolean constant: TRUE, false
-    Float { fg = T.pink },               --   A floating point constant: 2.3e10
-    URI { fg = T.cyan, gui = 'underline' },
+    Constant { fg = MrSuit.text_orange },                                -- (*) Any constant
+    String { fg = MrSuit.text_cyan },                                    --   A string constant: "this is a string"
+    Character { fg = MrSuit.text_orange_bright },                        --   A character constant: 'c', '\n'
+    Number { fg = MrSuit.text_blue },                                    --   A number constant: 234, 0xff
+    Boolean { fg = MrSuit.text_pink },                                   --   A boolean constant: TRUE, false
+    Float { fg = MrSuit.text_pink },                                     --   A floating point constant: 2.3e10
+    URI { fg = MrSuit.text_cyan, gui = 'underline' },
+    Identifier { fg = MrSuit.text0 },                                    -- (*) Any variable name
+    Function { fg = MrSuit.text_blue },                                  --   Function name (also: methods for classes)
 
-    Identifier { fg = T.text0 },                   -- (*) Any variable name
-    Function { fg = T.blue },                      --   Function name (also: methods for classes)
+    Statement { fg = MrSuit.text_lavender },                             -- (*) Any statement
+    Conditional { Statement },                                           --   if, then, else, endif, switch, etc.
+    Repeat { Statement },                                                --   for, do, while, etc.
+    Label { Statement },                                                 --   case, default, etc.
+    Operator { Punctuation },                                            --   "sizeof", "+", "*", etc.
+    Keyword { Statement },                                               --   any other keyword
+    Exception { Statement },                                             --   try, catch, throw
 
-    Statement { fg = T.purple },                   -- (*) Any statement
-    Conditional { Statement },                     --   if, then, else, endif, switch, etc.
-    Repeat { Statement },                          --   for, do, while, etc.
-    Label { Statement },                           --   case, default, etc.
-    Operator { Punctuation },                      --   "sizeof", "+", "*", etc.
-    Keyword { fg = T.purple },                     --   any other keyword
-    Exception { Keyword },                         --   try, catch, throw
+    PreProc { fg = MrSuit.text_peach },                                  -- (*) Generic Preprocessor
+    Include { fg = MrSuit.text_cyan },                                   --   Preprocessor #include
+    Define { Include },                                                  --   Preprocessor #define
+    Macro { Include },                                                   --   Same as Define
+    PreCondit { PreProc },                                               --   Preprocessor #if, #else, #endif, etc.
 
-    PreProc { fg = T.peach },                      -- (*) Generic Preprocessor
-    Include { fg = T.cyan },                       --   Preprocessor #include
-    Define { Include },                            --   Preprocessor #define
-    Macro { Include },                             --   Same as Define
-    PreCondit { PreProc },                         --   Preprocessor #if, #else, #endif, etc.
+    Type { fg = MrSuit.text_green },                                     -- (*) int, long, char, etc.
+    StorageClass { fg = MrSuit.text_lavender },                          --   static, register, volatile, etc.
+    Structure { Type },                                                  --   struct, union, enum, etc.
+    Typedef { Type },                                                    --   A typedef
 
-    Type { fg = T.greenSubtle },                   -- (*) int, long, char, etc.
-    StorageClass { Keyword },                      --   static, register, volatile, etc.
-    Structure { Type },                            --   struct, union, enum, etc.
-    Typedef { Type },                              --   A typedef
+    Special { fg = MrSuit.text_red },                                    -- (*) Any special symbol
+    SpecialChar { fg = MrSuit.text_peach },                              --   Special character in a constant
+    Tag { Special },                                                     --   You can use CTRL-] on this
+    Delimiter { Punctuation },                                           --   Character that needs attention
+    SpecialComment { fg = MrSuit.text_pink },                            --   Special things inside a comment (e.g. '\n')
+    Debug { fg = MrSuit.on_surface_orange, bg = MrSuit.surface_orange }, --   Debugging statements
 
-    Special { fg = T.redEmphasis },                -- (*) Any special symbol
-    SpecialChar { fg = T.peach },                  --   Special character in a constant
-    Tag { Special },                               --   You can use CTRL-] on this
-    Delimiter { Punctuation },                     --   Character that needs attention
-    SpecialComment { fg = T.pink },                --   Special things inside a comment (e.g. '\n')
-    Debug { fg = Mix.on_orange, bg = Mix.orange }, --   Debugging statements
-
-    Underlined { gui = 'underline' },              -- Text that stands out, HTML links
+    Underlined { gui = 'underline' },                                    -- Text that stands out, HTML links
     Bold { gui = 'bold' },
     Italic { gui = 'italic' },
     -- ("Ignore", below, may be invisible...)
@@ -417,16 +292,16 @@ local theme = lush(function(injected_functions)
     diffAdded { DiffAdd },
     diffChanged { DiffChange },
     diffRemoved { DiffDelete },
-    diffOldFile { fg = T.text1 },
-    diffNewFile { fg = T.blue },
-    diffFile { fg = T.purple },
+    diffOldFile { fg = MrSuit.text1 },
+    diffNewFile { fg = MrSuit.text_blue },
+    diffFile { fg = MrSuit.text_lavender },
     diffLine { DiffText },
-    diffIndexLine { fg = T.purple },
+    diffIndexLine { fg = MrSuit.text_lavender },
 
     -- GitSigns
-    GitSignsAdd { fg = T.green },     -- diff mode: Added line |diff.txt|
-    GitSignsChange { fg = T.purple }, -- diff mode: Changed line |diff.txt|
-    GitSignsDelete { fg = T.red },    -- diff mode: Deleted line |diff.txt|
+    GitSignsAdd { fg = MrSuit.text_green },       -- diff mode: Added line |diff.txt|
+    GitSignsChange { fg = MrSuit.text_lavender }, -- diff mode: Changed line |diff.txt|
+    GitSignsDelete { fg = MrSuit.text_red },      -- diff mode: Deleted line |diff.txt|
 
     -- GitGutter
     GitGutterAdd { GitSignsAdd },       -- diff mode: Added line |diff.txt|
@@ -439,57 +314,57 @@ local theme = lush(function(injected_functions)
 
     -- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
     --
-    LspReferenceText { fg = Mix.on_blue, bg = Mix.blue }, -- Used for highlighting "text" references
-    LspReferenceRead { LspReferenceText },                -- Used for highlighting "read" references
-    LspReferenceWrite { LspReferenceText },               -- Used for highlighting "write" references
-    LspCodeLens { fg = T.subtext1, gui = 'italic' },      -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
+    LspReferenceText { fg = MrSuit.on_surface_blue, bg = MrSuit.surface_blue }, -- Used for highlighting "text" references
+    LspReferenceRead { LspReferenceText },                                      -- Used for highlighting "read" references
+    LspReferenceWrite { LspReferenceText },                                     -- Used for highlighting "write" references
+    LspCodeLens { fg = MrSuit.subtext1, gui = 'italic' },                       -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
     -- LspCodeLensSeparator        { }, -- Used to color the seperator between two or more code lens.
     -- LspSignatureActiveParameter { }, -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
-    LspParameter { fg = T.peach, gui = 'italic' }, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
+    LspParameter { fg = MrSuit.text_peach, gui = 'italic' }, -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
 
     -- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
     --
-    DiagnosticError { Error },                                                 -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticWarn { Warning },                                                -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticInfo { fg = T.cyan },                                            -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticHint { fg = T.subtext0 },                                        -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-    DiagnosticVirtualTextError { fg = Mix.on_red, bg = Mix.red },              -- Used for "Error" diagnostic virtual text.
-    DiagnosticVirtualTextWarn { fg = Mix.on_yellow, bg = Mix.yellow },         -- Used for "Warn" diagnostic virtual text.
-    DiagnosticVirtualTextInfo { fg = Mix.on_cyan, bg = Mix.cyan },             -- Used for "Info" diagnostic virtual text.
-    DiagnosticVirtualTextHint { fg = Mix.subtext0, bg = T.surface1 },          -- Used for "Hint" diagnostic virtual text.
-    DiagnosticUnderlineError { gui = 'underdotted', sp = DiagnosticError.fg }, -- Used to underline "Error" diagnostics.
-    DiagnosticUnderlineWarn { gui = 'underdotted', sp = DiagnosticWarn.fg },   -- Used to underline "Warn" diagnostics.
-    DiagnosticUnderlineInfo { gui = 'underdotted', sp = DiagnosticInfo.fg },   -- Used to underline "Info" diagnostics.
-    DiagnosticUnderlineHint { gui = 'underdotted', sp = DiagnosticHint.fg },   -- Used to underline "Hint" diagnostics.
-    DiagnosticFloatingError { DiagnosticError },                               -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
-    DiagnosticFloatingWarn { DiagnosticWarn },                                 -- Used to color "Warn" diagnostic messages in diagnostics float.
-    DiagnosticFloatingInfo { DiagnosticInfo },                                 -- Used to color "Info" diagnostic messages in diagnostics float.
-    DiagnosticFloatingHint { DiagnosticHint },                                 -- Used to color "Hint" diagnostic messages in diagnostics float.
-    DiagnosticSignError { DiagnosticError },                                   -- Used for "Error" signs in sign column.
-    DiagnosticSignWarn { DiagnosticWarn },                                     -- Used for "Warn" signs in sign column.
-    DiagnosticSignInfo { DiagnosticInfo },                                     -- Used for "Info" signs in sign column.
-    DiagnosticSignHint { DiagnosticHint },                                     -- Used for "Hint" signs in sign column.
+    DiagnosticError { Error },                                                               -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticWarn { Warning },                                                              -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticInfo { fg = MrSuit.text_cyan },                                                -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticHint { fg = MrSuit.subtext0 },                                                 -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+    DiagnosticVirtualTextError { fg = MrSuit.on_surface_red, bg = MrSuit.surface_red },      -- Used for "Error" diagnostic virtual text.
+    DiagnosticVirtualTextWarn { fg = MrSuit.on_surface_yellow, bg = MrSuit.surface_yellow }, -- Used for "Warn" diagnostic virtual text.
+    DiagnosticVirtualTextInfo { fg = MrSuit.on_surface_cyan, bg = MrSuit.surface_cyan },     -- Used for "Info" diagnostic virtual text.
+    DiagnosticVirtualTextHint { fg = MrSuit.subtext0, bg = MrSuit.surface1 },                -- Used for "Hint" diagnostic virtual text.
+    DiagnosticUnderlineError { gui = 'underdotted', sp = DiagnosticError.fg },               -- Used to underline "Error" diagnostics.
+    DiagnosticUnderlineWarn { gui = 'underdotted', sp = DiagnosticWarn.fg },                 -- Used to underline "Warn" diagnostics.
+    DiagnosticUnderlineInfo { gui = 'underdotted', sp = DiagnosticInfo.fg },                 -- Used to underline "Info" diagnostics.
+    DiagnosticUnderlineHint { gui = 'underdotted', sp = DiagnosticHint.fg },                 -- Used to underline "Hint" diagnostics.
+    DiagnosticFloatingError { DiagnosticError },                                             -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
+    DiagnosticFloatingWarn { DiagnosticWarn },                                               -- Used to color "Warn" diagnostic messages in diagnostics float.
+    DiagnosticFloatingInfo { DiagnosticInfo },                                               -- Used to color "Info" diagnostic messages in diagnostics float.
+    DiagnosticFloatingHint { DiagnosticHint },                                               -- Used to color "Hint" diagnostic messages in diagnostics float.
+    DiagnosticSignError { DiagnosticError },                                                 -- Used for "Error" signs in sign column.
+    DiagnosticSignWarn { DiagnosticWarn },                                                   -- Used for "Warn" signs in sign column.
+    DiagnosticSignInfo { DiagnosticInfo },                                                   -- Used for "Info" signs in sign column.
+    DiagnosticSignHint { DiagnosticHint },                                                   -- Used for "Hint" signs in sign column.
 
-    LspDiagnosticsDefaultError { DiagnosticError },                            -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
-    LspDiagnosticsDefaultWarning { DiagnosticWarn },                           -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
-    LspDiagnosticsDefaultInformation { DiagnosticInfo },                       -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
-    LspDiagnosticsDefaultHint { DiagnosticHint },                              -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
-    LspDiagnosticsVirtualTextError { DiagnosticVirtualTextError },             -- Used for "Error" diagnostic virtual text.
-    LspDiagnosticsVirtualTextWarning { DiagnosticVirtualTextWarn },            -- Used for "Warn" diagnostic virtual text.
-    LspDiagnosticsVirtualTextInformation { DiagnosticVirtualTextInfo },        -- Used for "Info" diagnostic virtual text.
-    LspDiagnosticsVirtualTextHint { DiagnosticVirtualTextHint },               -- Used for "Hint" diagnostic virtual text.
-    LspDiagnosticsUnderlineError { DiagnosticUnderlineError },                 -- Used to underline "Error" diagnostics.
-    LspDiagnosticsUnderlineWarning { DiagnosticUnderlineWarn },                -- Used to underline "Warn" diagnostics.
-    LspDiagnosticsUnderlineInformation { DiagnosticUnderlineInfo },            -- Used to underline "Info" diagnostics.
-    LspDiagnosticsUnderlineHint { DiagnosticUnderlineHint },                   -- Used to underline "Hint" diagnostics.
-    LspDiagnosticsFloatingError { DiagnosticFloatingError },                   -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
-    LspDiagnosticsFloatingWarning { DiagnosticFloatingWarn },                  -- Used to color "Warn" diagnostic messages in diagnostics float.
-    LspDiagnosticsFloatingInfo { DiagnosticFloatingInfo },                     -- Used to color "Info" diagnostic messages in diagnostics float.
-    LspDiagnosticsFloatingHint { DiagnosticFloatingHint },                     -- Used to color "Hint" diagnostic messages in diagnostics float.
-    LspDiagnosticsSignError { DiagnosticSignError },                           -- Used for "Error" signs in sign column.
-    LspDiagnosticsSignWarning { DiagnosticSignWarn },                          -- Used for "Warn" signs in sign column.
-    LspDiagnosticsSignInformation { DiagnosticSignInfo },                      -- Used for "Info" signs in sign column.
-    LspDiagnosticsSignHint { DiagnosticSignHint },                             -- Used for "Hint" signs in sign column.
+    LspDiagnosticsDefaultError { DiagnosticError },                                          -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
+    LspDiagnosticsDefaultWarning { DiagnosticWarn },                                         -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
+    LspDiagnosticsDefaultInformation { DiagnosticInfo },                                     -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
+    LspDiagnosticsDefaultHint { DiagnosticHint },                                            -- Used as the base highlight group. Other LspDiagnostic highlights link to this by default (except Underline).
+    LspDiagnosticsVirtualTextError { DiagnosticVirtualTextError },                           -- Used for "Error" diagnostic virtual text.
+    LspDiagnosticsVirtualTextWarning { DiagnosticVirtualTextWarn },                          -- Used for "Warn" diagnostic virtual text.
+    LspDiagnosticsVirtualTextInformation { DiagnosticVirtualTextInfo },                      -- Used for "Info" diagnostic virtual text.
+    LspDiagnosticsVirtualTextHint { DiagnosticVirtualTextHint },                             -- Used for "Hint" diagnostic virtual text.
+    LspDiagnosticsUnderlineError { DiagnosticUnderlineError },                               -- Used to underline "Error" diagnostics.
+    LspDiagnosticsUnderlineWarning { DiagnosticUnderlineWarn },                              -- Used to underline "Warn" diagnostics.
+    LspDiagnosticsUnderlineInformation { DiagnosticUnderlineInfo },                          -- Used to underline "Info" diagnostics.
+    LspDiagnosticsUnderlineHint { DiagnosticUnderlineHint },                                 -- Used to underline "Hint" diagnostics.
+    LspDiagnosticsFloatingError { DiagnosticFloatingError },                                 -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
+    LspDiagnosticsFloatingWarning { DiagnosticFloatingWarn },                                -- Used to color "Warn" diagnostic messages in diagnostics float.
+    LspDiagnosticsFloatingInfo { DiagnosticFloatingInfo },                                   -- Used to color "Info" diagnostic messages in diagnostics float.
+    LspDiagnosticsFloatingHint { DiagnosticFloatingHint },                                   -- Used to color "Hint" diagnostic messages in diagnostics float.
+    LspDiagnosticsSignError { DiagnosticSignError },                                         -- Used for "Error" signs in sign column.
+    LspDiagnosticsSignWarning { DiagnosticSignWarn },                                        -- Used for "Warn" signs in sign column.
+    LspDiagnosticsSignInformation { DiagnosticSignInfo },                                    -- Used for "Info" signs in sign column.
+    LspDiagnosticsSignHint { DiagnosticSignHint },                                           -- Used for "Hint" signs in sign column.
 
     -- Spell-checker.
     SpellBad { DiagnosticUnderlineError, gui = 'undercurl' },  -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
@@ -506,10 +381,10 @@ local theme = lush(function(injected_functions)
     sym '@text.emphasis' { Italic },
     sym '@text.underline' { gui = 'underline' },
     sym '@text.strike' { gui = 'strikethrough' },
-    sym '@text.literal' {},                             -- literal or verbatim text (e.g., inline code)
-    sym '@text.quote' { fg = T.text1, gui = 'italic' }, -- Comment
-    sym '@text.reference' { Identifier },               -- Identifier
-    sym '@text.title' { Title },                        -- Title
+    sym '@text.literal' {},                                  -- literal or verbatim text (e.g., inline code)
+    sym '@text.quote' { fg = MrSuit.text1, gui = 'italic' }, -- Comment
+    sym '@text.reference' { Identifier },                    -- Identifier
+    sym '@text.title' { Title },                             -- Title
     sym '@text.uri' { URI },
     sym '@text.math' { sym '@text.literal' },
     sym '@text.environment' {},      -- text environments of markup languages
@@ -540,7 +415,7 @@ local theme = lush(function(injected_functions)
     sym '@boolean' { Boolean },                                  -- Boolean
     sym '@float' { Float },                                      -- Float
     sym '@function' { Function },                                -- Function
-    sym '@function.builtin' { fg = T.blue },                     -- Special
+    sym '@function.builtin' { fg = MrSuit.text_blue },           -- Special
     sym '@function.call' { Function },                           -- Macro
     sym '@function.macro' { Macro },                             -- Macro
     sym '@parameter' { Identifier },                             -- Identifier
@@ -557,17 +432,17 @@ local theme = lush(function(injected_functions)
     sym '@keyword' { Keyword },                                  -- various keywords
     sym '@keyword.function' { sym '@keyword' },                  -- keywords that define a function (e.g. `func` in Go, `def` in Python)
     sym '@keyword.operator' { sym '@keyword' },                  -- operators that are English words (e.g. `and` / `or`)
-    sym '@keyword.return' { fg = T.redEmphasis },                -- keywords like `return` and `yield`
+    sym '@keyword.return' { fg = MrSuit.text_red },              -- keywords like `return` and `yield`
     sym '@exception' { Exception },                              -- Exception
     sym '@variable' {},                                          -- Identifier
-    sym '@variable.builtin' { fg = T.purple },                   -- Identifier
+    sym '@variable.builtin' { fg = MrSuit.text_lavender },       -- Identifier
     sym '@type' { Type },                                        -- Type
     sym '@type.builtin' { Type },
     sym '@type.definition' { Typedef },                          -- Typedef
-    sym '@type.qualifier' { fg = T.redEmphasis },
+    sym '@type.qualifier' { fg = MrSuit.text_red },
     sym '@storageclass' { StorageClass },                        -- StorageClass
     sym '@structure' { Structure },                              -- Structure
-    sym '@namespace' { fg = T.redEmphasis },                     -- Identifier
+    sym '@namespace' { fg = MrSuit.text_red },                   -- Identifier
     sym '@symbol' {},                                            -- symbols or atoms
     sym '@include' { Keyword },                                  -- Include
     sym '@attribute' { PreProc },
@@ -614,8 +489,8 @@ local theme = lush(function(injected_functions)
     qfError { Error },
 
     -- Vim Help Highlighting
-    helpCommand { fg = T.text0, bg = T.surface1 },
-    helpExample { fg = T.text1 },
+    helpCommand { fg = MrSuit.text0, bg = MrSuit.surface1 },
+    helpExample { fg = MrSuit.text1 },
     helpHeader { Title },
     helpSectionDelim { Punctuation },
     helpHyperTextJump { URI },
@@ -627,7 +502,7 @@ local theme = lush(function(injected_functions)
     mkdCodeEnd { mkdCodeStart },
     mkdLink { URI },
     markdownHeadingDelimiter { Punctuation },
-    markdownH1 { fg = T.title, gui = 'bold' },
+    markdownH1 { Title },
     markdownH2 { markdownH1 },
     markdownH3 { markdownH1 },
     markdownLinkText { URI },
@@ -638,19 +513,19 @@ local theme = lush(function(injected_functions)
 
     -- Telescope
     TelescopeSelection { PmenuSel },
-    TelescopePromptPrefix { fg = T.red },
-    TelescopeSelectionCaret { fg = T.red },
+    TelescopePromptPrefix { fg = MrSuit.text_red },
+    TelescopeSelectionCaret { fg = MrSuit.text_red },
     TelescopeMatching { FuzzyMatch },
     -- Borderless styles.
     TelescopeNormal { Normal },
-    TelescopeTitle { fg = T.blue, gui = 'bold' },
+    TelescopeTitle { fg = MrSuit.text_blue, gui = 'bold' },
     TelescopeBorder { Border },
     TelescopePreviewNormal { Normal },
-    TelescopePromptCounter { fg = T.subtext1 },
+    TelescopePromptCounter { fg = MrSuit.subtext1 },
     TelescopePromptBorder { TelescopeBorder },
     TelescopePromptNormal { TelescopeNormal },
     TelescopeResultsTitle { TelescopeTitle },
-    TelescopePromptTitle { TelescopeTitle, fg = T.purple },
+    TelescopePromptTitle { TelescopeTitle, fg = MrSuit.text_lavender },
 
     -- FzfLuaNormal            = { 'winopts.hl.normal', 'Normal' },
     -- FzfLuaBorder            = { 'winopts.hl.border', 'Normal' },
@@ -667,36 +542,36 @@ local theme = lush(function(injected_functions)
     -- FzfLuaHelpBorder        = { 'winopts.hl.help_border', 'FzfLuaBorder' },
     -- FzfLuaPreviewNormal     = { 'winopts.hl.preview_normal', 'FzfLuaNormal' },
     -- FzfLuaPreviewBorder     = { 'winopts.hl.preview_border', 'FzfLuaBorder' },
-    FzfLuaNormal { Normal, bg = T.surface0 },
-    FzfLuaBorder { fg = T.overlay0, bg = T.overlay0 },
-    FzfLuaTitle { fg = T.surface0, bg = T.blue, gui = 'bold' },
-    FzfLuaScrollFloatEmpty { bg = T.surface0 },
+    FzfLuaNormal { Normal, bg = MrSuit.surface0 },
+    FzfLuaBorder { fg = MrSuit.overlay0, bg = MrSuit.overlay0 },
+    FzfLuaTitle { fg = MrSuit.surface0, bg = MrSuit.text_blue, gui = 'bold' },
+    FzfLuaScrollFloatEmpty { bg = MrSuit.surface0 },
     -- fzf-lua only passes down the .fg attribute.
-    FzfLuaColorsFg { fg = T.text0 },
+    FzfLuaColorsFg { fg = MrSuit.text0 },
     FzfLuaColorsFgSel { FzfLuaColorsFg },
-    FzfLuaColorsBg { fg = T.overlay0 },
+    FzfLuaColorsBg { fg = MrSuit.overlay0 },
     FzfLuaColorsBgSel { FzfLuaColorsBg },
-    FzfLuaColorsHl { fg = T.blue },
+    FzfLuaColorsHl { fg = MrSuit.text_blue },
     FzfLuaColorsHlSel { FzfLuaColorsHl },
-    FzfLuaColorsInfo { fg = T.subtext1 },
-    FzfLuaColorsPrompt { fg = T.purple },
-    FzfLuaColorsPointer { fg = T.blue },
-    FzfLuaColorsMarker { fg = T.green },
+    FzfLuaColorsInfo { fg = MrSuit.subtext1 },
+    FzfLuaColorsPrompt { fg = MrSuit.text_lavender },
+    FzfLuaColorsPointer { fg = MrSuit.text_blue },
+    FzfLuaColorsMarker { fg = MrSuit.text_green },
     FzfLuaColorsSpinner { FzfLuaColorsInfo },
     FzfLuaColorsHeader { FzfLuaColorsInfo },
 
     -- Cmp
-    CmpItemAbbr { fg = T.subtext0 },
-    CmpItemAbbrDeprecated { fg = T.subtext1, gui = 'strikethrough' },
-    CmpItemKind { fg = T.blue },
+    CmpItemAbbr { fg = MrSuit.subtext0 },
+    CmpItemAbbrDeprecated { fg = MrSuit.subtext1, gui = 'strikethrough' },
+    CmpItemKind { fg = MrSuit.text_blue },
     CmpItemMenu { Normal },
     CmpItemAbbrMatch { FuzzyMatch },
     CmpItemAbbrMatchFuzzy { FuzzyMatch },
 
     -- kind support
-    CmpItemKindSnippet { fg = T.purple },
+    CmpItemKindSnippet { fg = MrSuit.text_lavender },
     CmpItemKindKeyword { sym '@keyword' },
-    CmpItemKindText { fg = T.cyan },
+    CmpItemKindText { fg = MrSuit.text_cyan },
     CmpItemKindMethod { sym '@definition.method' },
     CmpItemKindConstructor { sym '@constructor' },
     CmpItemKindFunction { sym '@definition.function' },
@@ -710,32 +585,30 @@ local theme = lush(function(injected_functions)
     CmpItemKindClass { sym '@definition.type' },
     CmpItemKindVariable { sym '@definition.var' },
     CmpItemKindFile { File },
-    CmpItemKindInterface { fg = T.yellow },
-    CmpItemKindColor { fg = T.red },
-    CmpItemKindReference { fg = T.red },
+    CmpItemKindInterface { fg = MrSuit.text_yellow },
+    CmpItemKindColor { fg = MrSuit.text_red },
+    CmpItemKindReference { fg = MrSuit.text_red },
     CmpItemKindEnumMember { sym '@field' },
     CmpItemKindStruct { sym '@definition.type' },
     CmpItemKindValue { sym '@field' },
-    CmpItemKindEvent { fg = T.blue },
+    CmpItemKindEvent { fg = MrSuit.text_blue },
     CmpItemKindOperator { Operator },
     CmpItemKindTypeParameter { sym '@parameter' },
-    CmpItemKindCopilot { fg = T.peach },
-
-    LualineANormal { fg = Mix.on_blue, bg = Mix.blue },
-    LualineAInsert { fg = Mix.on_green, bg = Mix.green },
-    LualineAVisual { fg = Mix.on_cyan, bg = Mix.cyan },
-    LualineAReplace { fg = Mix.on_red, bg = Mix.red },
-    LualineACommand { fg = Mix.on_purple, bg = Mix.purple },
-    LualineAInactive { fg = T.text1, bg = T.surface2 },
-
-    LualineBNormal { fg = T.text1, bg = T.surface1 },
+    CmpItemKindCopilot { fg = MrSuit.text_peach },
+    LualineANormal { fg = MrSuit.on_surface_blue, bg = MrSuit.surface_blue },
+    LualineAInsert { fg = MrSuit.on_surface_green, bg = MrSuit.surface_green },
+    LualineAVisual { fg = MrSuit.on_surface_cyan, bg = MrSuit.surface_cyan },
+    LualineAReplace { fg = MrSuit.on_surface_red, bg = MrSuit.surface_red },
+    LualineACommand { fg = MrSuit.on_surface_purple, bg = MrSuit.surface_purple },
+    LualineAInactive { fg = MrSuit.text1, bg = MrSuit.surface2 },
+    LualineBNormal { fg = MrSuit.text1, bg = MrSuit.surface1 },
     LualineBInsert { LualineBNormal },
     LualineBVisual { LualineBNormal },
     LualineBReplace { LualineBNormal },
     LualineBCommand { LualineBNormal },
     LualineBInactive { LualineBNormal },
 
-    LualineCNormal { fg = T.text1, bg = T.surface2 },
+    LualineCNormal { fg = MrSuit.text1, bg = MrSuit.surface2 },
     LualineCInsert { LualineCNormal },
     LualineCVisual { LualineCNormal },
     LualineCReplace { LualineCNormal },
