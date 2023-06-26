@@ -11,46 +11,17 @@
 local lush = require 'lush'
 local hsl = lush.hsl
 
-local CatppuccinMocha = {
-  rosewater = hsl '#f5e0dc',
-  flamingo = hsl '#f2cdcd',
-  pink = hsl '#f5c2e7',
-  mauve = hsl '#cba6f7',
-  red = hsl '#f38ba8',
-  maroon = hsl '#eba0ac',
-  peach = hsl '#fab387',
-  yellow = hsl '#f9e2af',
-  green = hsl '#a6e3a1',
-  teal = hsl '#94e2d5',
-  sky = hsl '#89dceb',
-  sapphire = hsl '#74c7ec',
-  blue = hsl '#89b4fa',
-  lavender = hsl '#b4befe',
-  text = hsl '#cdd6f4',
-  subtext1 = hsl '#bac2de',
-  subtext0 = hsl '#a6adc8',
-  overlay2 = hsl '#9399b2',
-  overlay1 = hsl '#7f849c',
-  overlay0 = hsl '#6c7086',
-  surface2 = hsl '#585b70',
-  surface1 = hsl '#45475a',
-  surface0 = hsl '#313244',
-  base = hsl '#1e1e2e',
-  mantle = hsl '#181825',
-  crust = hsl '#11111b',
-}
-
 local MrSuit = {
   overlay0 = hsl '#23282f',
   overlay1 = hsl '#23282f'.lighten(2),
 
-  shadow = hsl '#151b23'.darken(10),
+  shadow = hsl '#131920',
   surface0 = hsl '#151b23',
-  surface1 = hsl '#151b23'.lighten(2),
-  surface2 = hsl '#151b23'.lighten(5),
+  surface1 = hsl '#192029',
+  surface2 = hsl '#1d2530',
 
-  cursorline = hsl '#151b23'.lighten(7),
-  scrollbarThumb = hsl '#bfc0c9'.darken(10),
+  cursorline = hsl '#212a36',
+  scrollbarThumb = hsl '#aaabb6',
   border = hsl '#313244',
   conceal = hsl '#45475a',
 
@@ -62,43 +33,43 @@ local MrSuit = {
 
   text_peach = hsl '#f2cdcd',
   text_pink = hsl '#f5c2e7',
-  text_purple = hsl '#cba6f7'.lighten(10),
-  text_red = hsl '#fe7f8c'.lighten(20),
-  text_red_bright = hsl '#fe7f8c',
-  text_orange = hsl '#d8b48e',
-  text_orange_bright = hsl '#fab387',
+  text_purple = hsl '#d0aff8',
+  text_salmon = hsl '#fe9aa4',
+  text_bubblegum = hsl '#fe7f8c',
+  text_gold = hsl '#d8b48e',
+  text_orange = hsl '#fab387',
   text_yellow = hsl '#e6ddaf',
-  text_green = hsl '#a6e3a1'.darken(5).desaturate(50),
-  text_green_bright = hsl '#80d291'.desaturate(10).lighten(10),
+  text_green = hsl '#a8cba4',
+  text_celadon = hsl '#8ed29c',
   text_cyan = hsl '#91d7d1',
-  text_cyan_bright = hsl '#6fd0c6',
-  text_blue = hsl '#8bb5da',
-  text_blue_bright = hsl '#89b4fa',
+  text_turquoise = hsl '#6fd0c6',
+  text_aero = hsl '#8bb5da',
+  text_blue = hsl '#89b4fa',
   text_lavender = hsl '#b4befe',
 
   surface_grey = hsl '#313239',
-  on_surface_grey = hsl '#bfc0c9'.lighten(25),
+  on_surface_grey = hsl '#d0d1d7',
 
   surface_red = hsl '#41262e',
-  on_surface_red = hsl '#fe7f8c'.lighten(25),
+  on_surface_red = hsl '#fe9fa9',
 
   surface_orange = hsl '#433027',
-  on_surface_orange = hsl '#feae75'.lighten(25),
+  on_surface_orange = hsl '#fec49a',
 
   surface_yellow = hsl '#343637',
   on_surface_yellow = hsl '#f9e1ae',
 
   surface_green = hsl '#243c2e',
-  on_surface_green = hsl '#94efaa'.lighten(25),
+  on_surface_green = hsl '#aff3c0',
 
   surface_cyan = hsl '#233a48',
   on_surface_cyan = hsl '#89dceb',
 
   surface_blue = hsl '#203147',
-  on_surface_blue = hsl '#83befe'.lighten(25),
+  on_surface_blue = hsl '#9fcdfe',
 
   surface_purple = hsl '#312b41',
-  on_surface_purple = hsl '#b799f0'.lighten(25),
+  on_surface_purple = hsl '#cab4f4',
 }
 
 -- Terminal colors.
@@ -106,21 +77,21 @@ local MrSuit = {
 -- dropped during :Shipwright compilation).
 local Term = {
   MrSuit.subtext0, -- Black
-  MrSuit.text_red,
+  MrSuit.text_salmon,
   MrSuit.text_green,
   MrSuit.text_yellow,
-  MrSuit.text_blue,
+  MrSuit.text_aero,
   MrSuit.text_lavender,
   MrSuit.text_cyan,
   MrSuit.text0,
 
   MrSuit.subtext1, -- Bright black
-  MrSuit.text_red_bright,
-  MrSuit.text_green_bright,
-  MrSuit.text_orange_bright,
-  MrSuit.text_blue_bright,
+  MrSuit.text_bubblegum,
+  MrSuit.text_celadon,
+  MrSuit.text_orange,
+  MrSuit.text_blue,
   MrSuit.text_purple,
-  MrSuit.text_cyan_bright,
+  MrSuit.text_turquoise,
   MrSuit.text1,
 }
 
@@ -161,7 +132,7 @@ local theme = lush(function(injected_functions)
     CursorColumn { CursorLine },                                              -- Screen-column at the cursor, when 'cursorcolumn' is set.
     ColorColumn { CursorLine },                                               -- Columns set with 'colorcolumn'
     File { fg = MrSuit.text0 },                                               -- Directory names (and other special names in listings)
-    Directory { fg = MrSuit.text_blue },                                      -- Directory names (and other special names in listings)
+    Directory { fg = MrSuit.text_aero },                                      -- Directory names (and other special names in listings)
     DiffAdd { fg = MrSuit.on_surface_green, bg = MrSuit.surface_green },      -- Diff mode: Added line |diff.txt|
     DiffChange { fg = MrSuit.on_surface_purple, bg = MrSuit.surface_purple }, -- Diff mode: Changed line |diff.txt|
     DiffDelete { fg = MrSuit.on_surface_red, bg = MrSuit.surface_red },       -- Diff mode: Deleted line |diff.txt|
@@ -188,7 +159,7 @@ local theme = lush(function(injected_functions)
     PmenuSel { fg = MrSuit.on_surface_blue, bg = MrSuit.surface_blue },                 -- Popup menu: Selected item.
     PmenuSbar { bg = MrSuit.surface_grey },                                             -- Popup menu: Scrollbar.
     PmenuThumb { bg = MrSuit.scrollbarThumb },                                          -- Popup menu: Thumb of the scrollbar.
-    Question { fg = MrSuit.text_green_bright },                                         -- |hit-enter| prompt and yes/no questions
+    Question { fg = MrSuit.text_celadon },                                              -- |hit-enter| prompt and yes/no questions
     QuickFixLine { bg = MrSuit.surface1, gui = 'bold' },                                -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
     SpecialKey { fg = MrSuit.text1 },                                                   -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
     StatusLine { fg = MrSuit.text0, bg = MrSuit.surface2 },                             -- Status line of current window
@@ -206,7 +177,7 @@ local theme = lush(function(injected_functions)
     Todo { fg = MrSuit.on_surface_blue, bg = MrSuit.surface_blue, gui = 'italic' },     -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
     Success { fg = MrSuit.text_green },
     Warning { fg = MrSuit.text_yellow },
-    Error { fg = MrSuit.text_red },
+    Error { fg = MrSuit.text_salmon },
 
     -- Healthcheck.
     healthSuccess { Success },
@@ -242,19 +213,19 @@ local theme = lush(function(injected_functions)
     --
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    FuzzyMatch { fg = MrSuit.text_orange },
+    FuzzyMatch { fg = MrSuit.text_gold },
     Punctuation { fg = MrSuit.text1 },
     Comment { fg = MrSuit.subtext1 },                                    -- Any comment
 
-    Constant { fg = MrSuit.text_orange },                                -- (*) Any constant
+    Constant { fg = MrSuit.text_gold },                                  -- (*) Any constant
     String { fg = MrSuit.text_cyan },                                    --   A string constant: "this is a string"
-    Character { fg = MrSuit.text_orange_bright },                        --   A character constant: 'c', '\n'
-    Number { fg = MrSuit.text_blue },                                    --   A number constant: 234, 0xff
+    Character { fg = MrSuit.text_orange },                               --   A character constant: 'c', '\n'
+    Number { fg = MrSuit.text_aero },                                    --   A number constant: 234, 0xff
     Boolean { fg = MrSuit.text_pink },                                   --   A boolean constant: TRUE, false
     Float { fg = MrSuit.text_pink },                                     --   A floating point constant: 2.3e10
     URI { fg = MrSuit.text_cyan, gui = 'underline' },
     Identifier { fg = MrSuit.text0 },                                    -- (*) Any variable name
-    Function { fg = MrSuit.text_blue },                                  --   Function name (also: methods for classes)
+    Function { fg = MrSuit.text_aero },                                  --   Function name (also: methods for classes)
 
     Statement { fg = MrSuit.text_lavender },                             -- (*) Any statement
     Conditional { Statement },                                           --   if, then, else, endif, switch, etc.
@@ -275,7 +246,7 @@ local theme = lush(function(injected_functions)
     Structure { Type },                                                  --   struct, union, enum, etc.
     Typedef { Type },                                                    --   A typedef
 
-    Special { fg = MrSuit.text_red },                                    -- (*) Any special symbol
+    Special { fg = MrSuit.text_salmon },                                 -- (*) Any special symbol
     SpecialChar { fg = MrSuit.text_peach },                              --   Special character in a constant
     Tag { Special },                                                     --   You can use CTRL-] on this
     Delimiter { Punctuation },                                           --   Character that needs attention
@@ -293,7 +264,7 @@ local theme = lush(function(injected_functions)
     diffChanged { DiffChange },
     diffRemoved { DiffDelete },
     diffOldFile { fg = MrSuit.text1 },
-    diffNewFile { fg = MrSuit.text_blue },
+    diffNewFile { fg = MrSuit.text_aero },
     diffFile { fg = MrSuit.text_lavender },
     diffLine { DiffText },
     diffIndexLine { fg = MrSuit.text_lavender },
@@ -301,7 +272,7 @@ local theme = lush(function(injected_functions)
     -- GitSigns
     GitSignsAdd { fg = MrSuit.text_green },       -- diff mode: Added line |diff.txt|
     GitSignsChange { fg = MrSuit.text_lavender }, -- diff mode: Changed line |diff.txt|
-    GitSignsDelete { fg = MrSuit.text_red },      -- diff mode: Deleted line |diff.txt|
+    GitSignsDelete { fg = MrSuit.text_salmon },   -- diff mode: Deleted line |diff.txt|
 
     -- GitGutter
     GitGutterAdd { GitSignsAdd },       -- diff mode: Added line |diff.txt|
@@ -415,7 +386,7 @@ local theme = lush(function(injected_functions)
     sym '@boolean' { Boolean },                                  -- Boolean
     sym '@float' { Float },                                      -- Float
     sym '@function' { Function },                                -- Function
-    sym '@function.builtin' { fg = MrSuit.text_blue },           -- Special
+    sym '@function.builtin' { fg = MrSuit.text_aero },           -- Special
     sym '@function.call' { Function },                           -- Macro
     sym '@function.macro' { Macro },                             -- Macro
     sym '@parameter' { Identifier },                             -- Identifier
@@ -432,17 +403,17 @@ local theme = lush(function(injected_functions)
     sym '@keyword' { Keyword },                                  -- various keywords
     sym '@keyword.function' { sym '@keyword' },                  -- keywords that define a function (e.g. `func` in Go, `def` in Python)
     sym '@keyword.operator' { sym '@keyword' },                  -- operators that are English words (e.g. `and` / `or`)
-    sym '@keyword.return' { fg = MrSuit.text_red },              -- keywords like `return` and `yield`
+    sym '@keyword.return' { fg = MrSuit.text_salmon },           -- keywords like `return` and `yield`
     sym '@exception' { Exception },                              -- Exception
     sym '@variable' {},                                          -- Identifier
     sym '@variable.builtin' { fg = MrSuit.text_lavender },       -- Identifier
     sym '@type' { Type },                                        -- Type
     sym '@type.builtin' { Type },
     sym '@type.definition' { Typedef },                          -- Typedef
-    sym '@type.qualifier' { fg = MrSuit.text_red },
+    sym '@type.qualifier' { fg = MrSuit.text_salmon },
     sym '@storageclass' { StorageClass },                        -- StorageClass
     sym '@structure' { Structure },                              -- Structure
-    sym '@namespace' { fg = MrSuit.text_red },                   -- Identifier
+    sym '@namespace' { fg = MrSuit.text_salmon },                -- Identifier
     sym '@symbol' {},                                            -- symbols or atoms
     sym '@include' { Keyword },                                  -- Include
     sym '@attribute' { PreProc },
@@ -513,12 +484,12 @@ local theme = lush(function(injected_functions)
 
     -- Telescope
     TelescopeSelection { PmenuSel },
-    TelescopePromptPrefix { fg = MrSuit.text_red },
-    TelescopeSelectionCaret { fg = MrSuit.text_red },
+    TelescopePromptPrefix { fg = MrSuit.text_salmon },
+    TelescopeSelectionCaret { fg = MrSuit.text_salmon },
     TelescopeMatching { FuzzyMatch },
     -- Borderless styles.
     TelescopeNormal { Normal },
-    TelescopeTitle { fg = MrSuit.text_blue, gui = 'bold' },
+    TelescopeTitle { fg = MrSuit.text_aero, gui = 'bold' },
     TelescopeBorder { Border },
     TelescopePreviewNormal { Normal },
     TelescopePromptCounter { fg = MrSuit.subtext1 },
@@ -544,18 +515,18 @@ local theme = lush(function(injected_functions)
     -- FzfLuaPreviewBorder     = { 'winopts.hl.preview_border', 'FzfLuaBorder' },
     FzfLuaNormal { Normal, bg = MrSuit.surface0 },
     FzfLuaBorder { fg = MrSuit.overlay0, bg = MrSuit.overlay0 },
-    FzfLuaTitle { fg = MrSuit.surface0, bg = MrSuit.text_blue, gui = 'bold' },
+    FzfLuaTitle { fg = MrSuit.surface0, bg = MrSuit.text_aero, gui = 'bold' },
     FzfLuaScrollFloatEmpty { bg = MrSuit.surface0 },
     -- fzf-lua only passes down the .fg attribute.
     FzfLuaColorsFg { fg = MrSuit.text0 },
     FzfLuaColorsFgSel { FzfLuaColorsFg },
     FzfLuaColorsBg { fg = MrSuit.overlay0 },
     FzfLuaColorsBgSel { FzfLuaColorsBg },
-    FzfLuaColorsHl { fg = MrSuit.text_blue },
+    FzfLuaColorsHl { fg = MrSuit.text_aero },
     FzfLuaColorsHlSel { FzfLuaColorsHl },
     FzfLuaColorsInfo { fg = MrSuit.subtext1 },
     FzfLuaColorsPrompt { fg = MrSuit.text_lavender },
-    FzfLuaColorsPointer { fg = MrSuit.text_blue },
+    FzfLuaColorsPointer { fg = MrSuit.text_aero },
     FzfLuaColorsMarker { fg = MrSuit.text_green },
     FzfLuaColorsSpinner { FzfLuaColorsInfo },
     FzfLuaColorsHeader { FzfLuaColorsInfo },
@@ -563,7 +534,7 @@ local theme = lush(function(injected_functions)
     -- Cmp
     CmpItemAbbr { fg = MrSuit.subtext0 },
     CmpItemAbbrDeprecated { fg = MrSuit.subtext1, gui = 'strikethrough' },
-    CmpItemKind { fg = MrSuit.text_blue },
+    CmpItemKind { fg = MrSuit.text_aero },
     CmpItemMenu { Normal },
     CmpItemAbbrMatch { FuzzyMatch },
     CmpItemAbbrMatchFuzzy { FuzzyMatch },
@@ -586,12 +557,12 @@ local theme = lush(function(injected_functions)
     CmpItemKindVariable { sym '@definition.var' },
     CmpItemKindFile { File },
     CmpItemKindInterface { fg = MrSuit.text_yellow },
-    CmpItemKindColor { fg = MrSuit.text_red },
-    CmpItemKindReference { fg = MrSuit.text_red },
+    CmpItemKindColor { fg = MrSuit.text_salmon },
+    CmpItemKindReference { fg = MrSuit.text_salmon },
     CmpItemKindEnumMember { sym '@field' },
     CmpItemKindStruct { sym '@definition.type' },
     CmpItemKindValue { sym '@field' },
-    CmpItemKindEvent { fg = MrSuit.text_blue },
+    CmpItemKindEvent { fg = MrSuit.text_aero },
     CmpItemKindOperator { Operator },
     CmpItemKindTypeParameter { sym '@parameter' },
     CmpItemKindCopilot { fg = MrSuit.text_peach },
@@ -600,15 +571,15 @@ local theme = lush(function(injected_functions)
     LualineAVisual { fg = MrSuit.on_surface_cyan, bg = MrSuit.surface_cyan },
     LualineAReplace { fg = MrSuit.on_surface_red, bg = MrSuit.surface_red },
     LualineACommand { fg = MrSuit.on_surface_purple, bg = MrSuit.surface_purple },
-    LualineAInactive { fg = MrSuit.text1, bg = MrSuit.surface2 },
-    LualineBNormal { fg = MrSuit.text1, bg = MrSuit.surface1 },
+    LualineAInactive { fg = MrSuit.text1, bg = MrSuit.surface0 },
+    LualineBNormal { fg = MrSuit.subtext0, bg = MrSuit.surface1 },
     LualineBInsert { LualineBNormal },
     LualineBVisual { LualineBNormal },
     LualineBReplace { LualineBNormal },
     LualineBCommand { LualineBNormal },
     LualineBInactive { LualineBNormal },
 
-    LualineCNormal { fg = MrSuit.text1, bg = MrSuit.surface2 },
+    LualineCNormal { fg = MrSuit.subtext1, bg = MrSuit.surface2 },
     LualineCInsert { LualineCNormal },
     LualineCVisual { LualineCNormal },
     LualineCReplace { LualineCNormal },

@@ -174,7 +174,7 @@ LspReferenceRead = {link = "LspReferenceText"},
 LspReferenceWrite = {link = "LspReferenceText"},
 LualineACommand = {fg = "#CAB4F4", bg = "#312B40"},
 LualineZCommand = {link = "LualineACommand"},
-LualineAInactive = {fg = "#90A4BB", bg = "#1D2530"},
+LualineAInactive = {fg = "#90A4BB", bg = "#151B23"},
 LualineZInactive = {link = "LualineAInactive"},
 LualineAInsert = {fg = "#AFF3C0", bg = "#243D2E"},
 LualineZInsert = {link = "LualineAInsert"},
@@ -187,7 +187,7 @@ LualineZVisual = {link = "LualineAVisual"},
 LualineYCommand = {link = "LualineBCommand"},
 LualineYInactive = {link = "LualineBInactive"},
 LualineYInsert = {link = "LualineBInsert"},
-LualineBNormal = {fg = "#90A4BB", bg = "#192029"},
+LualineBNormal = {fg = "#848F9F", bg = "#192029"},
 LualineBCommand = {link = "LualineBNormal"},
 LualineBInactive = {link = "LualineBNormal"},
 LualineBInsert = {link = "LualineBNormal"},
@@ -199,7 +199,7 @@ LualineYVisual = {link = "LualineBVisual"},
 LualineXCommand = {link = "LualineCCommand"},
 LualineXInactive = {link = "LualineCInactive"},
 LualineXInsert = {link = "LualineCInsert"},
-LualineCNormal = {fg = "#90A4BB", bg = "#1D2530"},
+LualineCNormal = {fg = "#7A8390", bg = "#1D2530"},
 LualineCCommand = {link = "LualineCNormal"},
 LualineCInactive = {link = "LualineCNormal"},
 LualineCInsert = {link = "LualineCNormal"},
@@ -405,7 +405,7 @@ CmpItemKindProperty = {link = "@property"},
 -- colorschemes generally want to do this
 vim.cmd 'highlight clear'
 vim.cmd 'set t_Co=256'
-vim.cmd "let g:colors_name='chroma-static'"
+vim.cmd "let g:colors_name='mrsuit'"
 
 -- apply highlight groups
 for group, attrs in pairs(colors) do
