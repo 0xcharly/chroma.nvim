@@ -482,7 +482,7 @@ local theme = lush(function(injected_functions)
     debugPC { CursorLine },    -- used for highlighting the current line in terminal-debug
     debugBreakpoint { Debug }, -- used for breakpoint colors in terminal-debug
 
-    -- Telescope
+    -- Telescope.
     TelescopeSelection { PmenuSel },
     TelescopePromptPrefix { fg = MrSuit.text_salmon },
     TelescopeSelectionCaret { fg = MrSuit.text_salmon },
@@ -498,6 +498,11 @@ local theme = lush(function(injected_functions)
     TelescopeResultsTitle { TelescopeTitle },
     TelescopePromptTitle { TelescopeTitle, fg = MrSuit.text_lavender },
 
+    -- fzf-lua.
+    FzfLuaNormal { Normal, bg = MrSuit.surface0 },
+    FzfLuaBorder { fg = MrSuit.overlay0, bg = MrSuit.overlay0 },
+    FzfLuaTitle { fg = MrSuit.surface0, bg = MrSuit.text_aero, gui = 'bold' },
+    FzfLuaScrollFloatEmpty { bg = MrSuit.surface0 },
     -- FzfLuaNormal            = { 'winopts.hl.normal', 'Normal' },
     -- FzfLuaBorder            = { 'winopts.hl.border', 'Normal' },
     -- FzfLuaCursor            = { 'winopts.hl.cursor', 'Cursor' },
@@ -513,15 +518,14 @@ local theme = lush(function(injected_functions)
     -- FzfLuaHelpBorder        = { 'winopts.hl.help_border', 'FzfLuaBorder' },
     -- FzfLuaPreviewNormal     = { 'winopts.hl.preview_normal', 'FzfLuaNormal' },
     -- FzfLuaPreviewBorder     = { 'winopts.hl.preview_border', 'FzfLuaBorder' },
-    FzfLuaNormal { Normal, bg = MrSuit.surface0 },
-    FzfLuaBorder { fg = MrSuit.overlay0, bg = MrSuit.overlay0 },
-    FzfLuaTitle { fg = MrSuit.surface0, bg = MrSuit.text_aero, gui = 'bold' },
-    FzfLuaScrollFloatEmpty { bg = MrSuit.surface0 },
+
+    -- FZF colors.
     -- fzf-lua only passes down the .fg attribute.
     FzfLuaColorsFg { fg = MrSuit.text0 },
     FzfLuaColorsFgSel { FzfLuaColorsFg },
     FzfLuaColorsBg { fg = MrSuit.overlay0 },
     FzfLuaColorsBgSel { FzfLuaColorsBg },
+    FzfLuaColorsGutter { FzfLuaColorsBg },
     FzfLuaColorsHl { fg = MrSuit.text_aero },
     FzfLuaColorsHlSel { FzfLuaColorsHl },
     FzfLuaColorsInfo { fg = MrSuit.subtext1 },
@@ -531,7 +535,7 @@ local theme = lush(function(injected_functions)
     FzfLuaColorsSpinner { FzfLuaColorsInfo },
     FzfLuaColorsHeader { FzfLuaColorsInfo },
 
-    -- Cmp
+    -- Cmp.
     CmpItemAbbr { fg = MrSuit.subtext0 },
     CmpItemAbbrDeprecated { fg = MrSuit.subtext1, gui = 'strikethrough' },
     CmpItemKind { fg = MrSuit.text_aero },
@@ -539,7 +543,7 @@ local theme = lush(function(injected_functions)
     CmpItemAbbrMatch { FuzzyMatch },
     CmpItemAbbrMatchFuzzy { FuzzyMatch },
 
-    -- kind support
+    -- Cmp completion kind/source.
     CmpItemKindSnippet { fg = MrSuit.text_lavender },
     CmpItemKindKeyword { sym '@keyword' },
     CmpItemKindText { fg = MrSuit.text_cyan },
@@ -566,6 +570,8 @@ local theme = lush(function(injected_functions)
     CmpItemKindOperator { Operator },
     CmpItemKindTypeParameter { sym '@parameter' },
     CmpItemKindCopilot { fg = MrSuit.text_peach },
+
+    -- Lualine.
     LualineANormal { fg = MrSuit.on_surface_blue, bg = MrSuit.surface_blue },
     LualineAInsert { fg = MrSuit.on_surface_green, bg = MrSuit.surface_green },
     LualineAVisual { fg = MrSuit.on_surface_cyan, bg = MrSuit.surface_cyan },
