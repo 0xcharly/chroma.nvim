@@ -535,6 +535,10 @@ local theme = lush(function(injected_functions)
     FzfLuaColorsSpinner { FzfLuaColorsInfo },
     FzfLuaColorsHeader { FzfLuaColorsInfo },
 
+    -- Flutter tools.
+    FlutterToolsOutlineIndentGuides { LspCodeLens },
+    FlutterWidgetGuides { LspCodeLens },
+
     -- Cmp.
     CmpItemAbbr { fg = MrSuit.subtext0 },
     CmpItemAbbrDeprecated { fg = MrSuit.subtext1, gui = 'strikethrough' },
